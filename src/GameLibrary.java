@@ -1,14 +1,15 @@
-import java.util.HashMap;
+import java.util.ArrayList;
+import java.util.List;
 
 public class GameLibrary
 {
-	private HashMap<Integer,Game> gameMap; //Trying out hashmap here
+	private List<Game> gameList;   //Instance variable
 
 
 	//--------------CONSTRUCTOR---------
 	public GameLibrary()
 	{
-		gameMap = new HashMap<>();
+		gameList = new ArrayList<Game>();
 	}
 
 
@@ -16,16 +17,24 @@ public class GameLibrary
 	public void addGame(int id, String title, String genre, double dailyRent)
 	{
 		Game g = new Game(id, title, genre, dailyRent);
-		gameMap.put(g.getId(), g);
+		gameList.add(g);
 	}
 
 	public void removeGame(int idToRemove)
 	{
-		if(gameMap.containsKey(idToRemove))
+		boolean foundGame = false;
+
+		for(Game g : gameList)
 		{
-			gameMap.remove(idToRemove);
+			if(idToRemove == g.getId())
+			{
+				gameList.remove(g);
+				foundGame = true;
+				break;
+			}
 		}
-		else
+
+		if(!foundGame)
 		{
 			System.out.println("Game with ID: " + idToRemove + " was not found.");
 		}
@@ -33,16 +42,32 @@ public class GameLibrary
 
 	public void gameStatus(int idToCheck)
 	{
-		if(gameMap.containsKey(idToCheck))
-			gameMap.get(idToCheck).toString();
+		boolean foundGame = false;
+
+		for(Game g : gameList)
+		{
+			if(idToCheck == g.getId())
+			{
+				System.out.println(g.toString());
+				foundGame = true;
+				break;
+			}
+		}
+
+		if(!foundGame)
+		{
+			System.out.println("Game with ID: " + idToCheck + " was not found.");
+		}
+
 	}
 
 	//prints all games in list to console
 	public void printConsole()
 	{
-		for(int i : gameMap.keySet())
+
+		for(Game g : gameList)
 		{
-			System.out.println(gameMap.get(i).toString());		//Print the game info
+			System.out.println(g.toString());
 		}
 	}
 }
