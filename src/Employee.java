@@ -34,7 +34,7 @@ public class Employee
 
 	public double employeeSalary()
 	{
-		if (grossSalary < 100000)
+		if (grossSalary * 12 < 100000)
 		{
 			return grossSalary;
 		} else
