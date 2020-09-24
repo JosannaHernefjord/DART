@@ -6,6 +6,7 @@ public class Controller
 	private EmployeeLibrary employeeLibrary;
 	private GameLibrary gameLibrary;
 	private CustomerLibrary customerLibrary;
+	private double rentProfit;
 
 	public Controller()
 	{
@@ -13,6 +14,7 @@ public class Controller
 		employeeLibrary = new EmployeeLibrary();
 		gameLibrary = new GameLibrary();
 		customerLibrary = new CustomerLibrary();
+		rentProfit = 0;
 	}
 
 	public void runApplication()
@@ -77,11 +79,10 @@ public class Controller
 					Message.printInvalidInput();
 				}
 			}
-		}
-		else
-			{
+		} else
+		{
 			Message.printInvalidPassword();
-			}
+		}
 	}
 
 	private void employeeRoutine()
@@ -89,47 +90,47 @@ public class Controller
 		Message.printPasswordPrompt();
 		String input = sc.nextLine();
 
-		if(input.equals("password123"))
+		if (input.equals("password123"))
 		{
 			while (!input.equals("7"))
 			{
 				Message.printEmployeeScreen();
 				input = sc.nextLine();
-				if(input.equals("1"))
+
+				if (input.equals("1"))
 				{
 					addNewGame();
 				}
-				if(input.equals("2"))
+				if (input.equals("2"))
 				{
 					Message.printRemoveGame();
 					int id = sc.nextInt();
 					sc.nextLine();
 					gameLibrary.removeGame(id);
 				}
-				if(input.equals("3"))
+				if (input.equals("3"))
 				{
 					addCustomer();
 				}
-				if(input.equals("4"))
+				if (input.equals("4"))
 				{
 					Message.printRemoveCustomer();
 					int id = sc.nextInt();
 					sc.nextLine();
 					customerLibrary.removeCustomer(id);
 				}
-				if(input.equals("5"))
+				if (input.equals("5"))
 				{
-
+					System.out.println("Total rent profit is: " + rentProfit + " kr.");
 				}
-				if(input.equals("6"))
+				if (input.equals("6"))
 				{
 					Message.printGamesList();
 					gameLibrary.printConsole();
 				}
 			}
 
-		}
-		else
+		} else
 		{
 			Message.printInvalidPassword();
 		}
@@ -151,21 +152,21 @@ public class Controller
 
 		System.out.print("ID: ");
 		id = sc.nextInt();
-		sc.nextLine();			//Read next line to clear scanner buffer.
+		sc.nextLine();            //Read next line to clear scanner buffer.
 
 		System.out.print("Name: ");
 		name = sc.nextLine();
 
 		System.out.print("Birth year: ");
 		birthYear = sc.nextInt();
-		sc.nextLine();			//Read next line to clear scanner buffer.
+		sc.nextLine();            //Read next line to clear scanner buffer.
 
 		System.out.print("Address: ");
 		address = sc.nextLine();
 
 		System.out.print("Monthly gross salary: ");
 		grossSalary = sc.nextDouble();
-		sc.nextLine();			//Read next line to clear scanner buffer.
+		sc.nextLine();            //Read next line to clear scanner buffer.
 
 		employeeLibrary.addEmployee(id, name, birthYear, address, grossSalary);
 	}
@@ -184,7 +185,7 @@ public class Controller
 		System.out.print("Name: ");
 		name = sc.nextLine();
 
-		customerLibrary.addCustomer(id,name);
+		customerLibrary.addCustomer(id, name);
 	}
 
 	private void addNewGame()
@@ -209,6 +210,6 @@ public class Controller
 		dailyRent = sc.nextDouble();
 		sc.nextLine();
 
-		gameLibrary.addGame(id,name,genre,dailyRent);
+		gameLibrary.addGame(id, name, genre, dailyRent);
 	}
 }

@@ -60,6 +60,43 @@ public class GameLibrary
 		}
 	}
 
+	public void rentGame(int id)
+	{
+		for(Game g : gameList)
+		{
+			if(id == g.getId())
+			{
+				g.rentOut();
+				break;
+			}
+		}
+	}
+
+	public void returnGame(int id)
+	{
+		for(Game g : gameList)
+		{
+			if(id == g.getId())
+			{
+				g.returnGame();
+				break;
+			}
+		}
+	}
+
+	public boolean checkAvailability(int id)
+	{
+		for(Game g : gameList)
+		{
+			if(id == g.getId())
+			{
+				return g.getIsAvailable();
+			}
+		}
+
+		return false;
+	}
+
 	//prints all games in list to console
 	public void printConsole()
 	{
