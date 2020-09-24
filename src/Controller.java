@@ -83,7 +83,29 @@ public class Controller
 	private void employeeRoutine()
 	{
 		Message.printEmployeeScreen();
-		//TODO
+		String input = sc.nextLine();
+
+		if(input.equals("password123"))
+		{
+			while (!input.equals("password"))
+			{
+				Message.printEmployeeScreen();
+				input = sc.nextLine();
+				if(input.equals("1"))
+				{
+					addNewGame();
+				}
+				if(input.equals("2"))
+				{
+					Message.printRemoveGame();
+					int id = sc.nextInt();
+					sc.nextLine();
+					gameLibrary.removeGame(id);
+				}
+				//TODO
+			}
+
+		}
 	}
 
 	private void customerRoutine()
@@ -119,5 +141,30 @@ public class Controller
 		sc.nextLine();			//Read next line to clear scanner buffer.
 
 		employeeLibrary.addEmployee(id, name, birthYear, address, grossSalary);
+	}
+
+	private void addNewGame()
+	{
+		int id;
+		String name, genre;
+		double dailyRent;
+
+		Message.printCreateGame();
+
+		System.out.print("ID: ");
+		id = sc.nextInt();
+		sc.nextLine();
+
+		System.out.print("Name: ");
+		name = sc.nextLine();
+
+		System.out.print("Genre: ");
+		genre = sc.nextLine();
+
+		System.out.print("Daily rent: ");
+		dailyRent = sc.nextDouble();
+		sc.nextLine();
+
+		gameLibrary.addGame(id,name,genre,dailyRent);
 	}
 }

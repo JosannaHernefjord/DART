@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.Scanner;
 
 public class Application
@@ -7,5 +8,6 @@ public class Application
 		Controller c = new Controller();
 
 		c.runApplication();
+
 	}
 }

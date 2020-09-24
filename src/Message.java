@@ -60,4 +60,13 @@ public class Message
 	{
 		System.out.println("Please enter password:");
 	}
+
+	public static void printCreateGame()
+	{
+		System.out.print("Add a game. Please type the game's:");
+	}
+	public static void printRemoveGame()
+	{
+		System.out.println("Which game should be removed? ID: ");
+	}
 }
