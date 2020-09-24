@@ -34,6 +34,11 @@ public class Game
 		return id;
 	}
 
+	public boolean getIsAvailable()
+	{
+		return isAvailable;
+	}
+
 	public String toString()
 	{
 		String temp = "unavailable";

@@ -63,7 +63,6 @@ public class GameLibrary
 	//prints all games in list to console
 	public void printConsole()
 	{
-
 		for (Game g : gameList)
 		{
 			System.out.println(g.toString());

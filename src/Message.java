@@ -69,4 +69,23 @@ public class Message
 	{
 		System.out.println("Which game should be removed? ID: ");
 	}
+	public static void printCreateCustomer()
+	{
+		System.out.println("Creating an Customer. Please type the Customer’s:");
+	}
+	public static void printRemoveCustomer()
+	{
+		System.out.print("Which customer should be removed? ID: ");
+	}
+
+	public static void printInvalidPassword()
+	{
+		System.out.println("Invalid password.");
+		System.out.println();
+	}
+
+	public static void printGamesList()
+	{
+		System.out.println("Here's all the games: ");
+	}
 }

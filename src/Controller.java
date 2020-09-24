@@ -78,16 +78,20 @@ public class Controller
 				}
 			}
 		}
+		else
+			{
+			Message.printInvalidPassword();
+			}
 	}
 
 	private void employeeRoutine()
 	{
-		Message.printEmployeeScreen();
+		Message.printPasswordPrompt();
 		String input = sc.nextLine();
 
 		if(input.equals("password123"))
 		{
-			while (!input.equals("password"))
+			while (!input.equals("7"))
 			{
 				Message.printEmployeeScreen();
 				input = sc.nextLine();
@@ -102,9 +106,32 @@ public class Controller
 					sc.nextLine();
 					gameLibrary.removeGame(id);
 				}
-				//TODO
+				if(input.equals("3"))
+				{
+					addCustomer();
+				}
+				if(input.equals("4"))
+				{
+					Message.printRemoveCustomer();
+					int id = sc.nextInt();
+					sc.nextLine();
+					customerLibrary.removeCustomer(id);
+				}
+				if(input.equals("5"))
+				{
+
+				}
+				if(input.equals("6"))
+				{
+					Message.printGamesList();
+					gameLibrary.printConsole();
+				}
 			}
 
+		}
+		else
+		{
+			Message.printInvalidPassword();
 		}
 	}
 
@@ -141,6 +168,23 @@ public class Controller
 		sc.nextLine();			//Read next line to clear scanner buffer.
 
 		employeeLibrary.addEmployee(id, name, birthYear, address, grossSalary);
+	}
+
+	private void addCustomer()
+	{
+		int id;
+		String name;
+
+		Message.printCreateCustomer();
+
+		System.out.print("ID: ");
+		id = sc.nextInt();
+		sc.nextLine();
+
+		System.out.print("Name: ");
+		name = sc.nextLine();
+
+		customerLibrary.addCustomer(id,name);
 	}
 
 	private void addNewGame()
