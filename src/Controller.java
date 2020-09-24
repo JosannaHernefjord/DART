@@ -19,7 +19,7 @@ public class Controller
 	{
 		String userInput = "";
 
-		while(!userInput.equals("X"))
+		while (!userInput.equals("X"))
 		{
 			Message.printMainScreen();
 			userInput = sc.nextLine();
@@ -52,29 +52,27 @@ public class Controller
 		Message.printPasswordPrompt();
 		String input = sc.nextLine();
 
-		if(input.equals("admin1234"))
+		if (input.equals("admin1234"))
 		{
-			while(!input.equals("4"))
+			while (!input.equals("4"))
 			{
 				Message.printManagerScreen();
 				input = sc.nextLine();
-				if(input.equals("1"))
+				if (input.equals("1"))
 				{
 					addNewEmployee();
-				}
-				else if(input.equals("2"))
+				} else if (input.equals("2"))
 				{
 					System.out.println("---------------EMPLOYEES---------------");
 					employeeLibrary.printConsole();
 					System.out.println("---------------------------------------");
-				}
-				else if(input.equals("3"))
+				} else if (input.equals("3"))
 				{
 					Message.printRemoveEmployee();
-					int id = sc.nextInt(); sc.nextLine();
+					int id = sc.nextInt();
+					sc.nextLine();
 					employeeLibrary.removeEmployee(id);
-				}
-				else if(!input.equals("4"))
+				} else if (!input.equals("4"))
 				{
 					Message.printInvalidInput();
 				}
@@ -102,11 +100,19 @@ public class Controller
 
 		Message.printCreateEmployee();
 
-		System.out.print("ID: "); id = sc.nextInt(); sc.nextLine();
-		System.out.print("Name: "); name = sc.nextLine();
-		System.out.print("Birth year: "); birthYear = sc.nextInt(); sc.nextLine();
-		System.out.print("Address: "); address = sc.nextLine();
-		System.out.print("Monthly gross salary: "); grossSalary = sc.nextDouble(); sc.nextLine();
+		System.out.print("ID: ");
+		id = sc.nextInt();
+		sc.nextLine();
+		System.out.print("Name: ");
+		name = sc.nextLine();
+		System.out.print("Birth year: ");
+		birthYear = sc.nextInt();
+		sc.nextLine();
+		System.out.print("Address: ");
+		address = sc.nextLine();
+		System.out.print("Monthly gross salary: ");
+		grossSalary = sc.nextDouble();
+		sc.nextLine();
 
 		employeeLibrary.addEmployee(id, name, birthYear, address, grossSalary);
 	}

@@ -38,10 +38,10 @@ public class Game
 	{
 		String temp = "unavailable";
 
-		if(isAvailable)
+		if (isAvailable)
 			temp = "available";
 
-		return id + ": " + title + " (" + genre + "). "+ dailyRent + ". Status: " + temp;
+		return id + ": " + title + " (" + genre + "). " + dailyRent + ". Status: " + temp;
 	}
 
 }

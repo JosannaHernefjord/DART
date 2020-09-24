@@ -9,31 +9,31 @@ public class EmployeeLibrary
 	//--------------CONSTRUCTOR---------
 	public EmployeeLibrary()
 	{
-		employeeList = new ArrayList<Employee>();
+		employeeList = new ArrayList<>();
 	}
 
 	//--------------METHODS------------
 	public void addEmployee(int id, String name, int birthYear, String address, double grossSalary)
 	{
 		Employee e = new Employee(id, name, birthYear, address, grossSalary); //Create the employee
-		employeeList.add(e);	//Add the employee to the list
+		employeeList.add(e);    //Add the employee to the list
 	}
 
 	public void removeEmployee(int idToRemove)
 	{
-		boolean foundEmployee = false;		//False until proven true
+		boolean foundEmployee = false;        //False until proven true
 
-		for(Employee e : employeeList)		//For each Employee "e" in EmployeeList
+		for (Employee e : employeeList)        //For each Employee "e" in EmployeeList
 		{
-			if(e.getId() == idToRemove)		//If e's ID == idToRemove
+			if (e.getId() == idToRemove)        //If e's ID == idToRemove
 			{
-				employeeList.remove(e);		// Remove e from gameList
-				foundEmployee = true;		//Employee found!
-				break;						//No use in looking any more
+				employeeList.remove(e);        // Remove e from gameList
+				foundEmployee = true;        //Employee found!
+				break;                        //No use in looking any more
 			}
 		}
 
-		if(!foundEmployee)	//If ID was not found in the list
+		if (!foundEmployee)    //If ID was not found in the list
 		{
 			System.out.println("Employee with ID: " + idToRemove + " was not found.");
 		}
@@ -41,9 +41,9 @@ public class EmployeeLibrary
 
 	public void printConsole()
 	{
-		for(Employee e : employeeList)				//For each  "e" in employeeList
+		for (Employee e : employeeList)                //For each  "e" in employeeList
 		{
-			System.out.println(e.toString());		//Print the employee info
+			System.out.println(e.toString());        //Print the employee info
 		}
 	}
 
@@ -51,17 +51,17 @@ public class EmployeeLibrary
 	{
 		boolean foundEmployee = false;
 
-		for(Employee e : employeeList)
+		for (Employee e : employeeList)
 		{
-			if(e.getId() == id)
+			if (e.getId() == id)
 			{
-				 System.out.println(e.employeeSalary());
-				 foundEmployee = true;
-				 break;
+				System.out.println(e.employeeSalary());
+				foundEmployee = true;
+				break;
 			}
 		}
 
-		if(!foundEmployee)		//If ID was not found in the list
+		if (!foundEmployee)        //If ID was not found in the list
 		{
 			System.out.println("Employee with ID: " + id + " was not found.");
 		}
@@ -69,18 +69,18 @@ public class EmployeeLibrary
 
 	public void printBonus(int id)
 	{
-		boolean foundEmployee = false;		//False until proven true
+		boolean foundEmployee = false;        //False until proven true
 
-		for (Employee e : employeeList)		//For each Employee "e" in customerList
+		for (Employee e : employeeList)        //For each Employee "e" in customerList
 		{
-			if(e.getId() == id)				//If e's ID == idToRemove
+			if (e.getId() == id)                //If e's ID == idToRemove
 			{
-				System.out.println(e.employeeBonus());	//Remove e from customerList
-				foundEmployee = true;					//Employee found!
-				break;									////No use in looking any more
+				System.out.println(e.employeeBonus());    //Remove e from customerList
+				foundEmployee = true;                    //Employee found!
+				break;                                    ////No use in looking any more
 			}
 		}
-		if(!foundEmployee)
+		if (!foundEmployee)
 		{
 			System.out.println("Employee with ID: " + id + "was not found");
 		}

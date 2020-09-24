@@ -29,32 +29,29 @@ public class Employee
 
 	public String toString()
 	{
-		return id + " : " + name + " - " + birthYear + " ( "+ age + " ): " + grossSalary + "SEK.";
+		return id + " : " + name + " - " + birthYear + " ( " + age + " ): " + grossSalary + "SEK.";
 	}
 
 	public double employeeSalary()
 	{
-		if(grossSalary < 100000)
+		if (grossSalary < 100000)
 		{
 			return grossSalary;
-		}
-
-		else
+		} else
 		{
 			return (grossSalary * 0.7);
 		}
 	}
+
 	public double employeeBonus()
 	{
-		if(age < 22)
+		if (age < 22)
 		{
 			return 4000;
-		}
-		else if(22 < age && age < 30)
+		} else if (22 < age && age < 30)
 		{
 			return 6000;
-		}
-		else
+		} else
 		{
 			return 7500;
 		}

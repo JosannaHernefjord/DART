@@ -9,7 +9,7 @@ public class GameLibrary
 	//--------------CONSTRUCTOR---------
 	public GameLibrary()
 	{
-		gameList = new ArrayList<Game>();
+		gameList = new ArrayList<>();
 	}
 
 
@@ -24,9 +24,9 @@ public class GameLibrary
 	{
 		boolean foundGame = false;
 
-		for(Game g : gameList)
+		for (Game g : gameList)
 		{
-			if(idToRemove == g.getId())
+			if (idToRemove == g.getId())
 			{
 				gameList.remove(g);
 				foundGame = true;
@@ -34,7 +34,7 @@ public class GameLibrary
 			}
 		}
 
-		if(!foundGame)
+		if (!foundGame)
 		{
 			System.out.println("Game with ID: " + idToRemove + " was not found.");
 		}
@@ -44,9 +44,9 @@ public class GameLibrary
 	{
 		boolean foundGame = false;
 
-		for(Game g : gameList)
+		for (Game g : gameList)
 		{
-			if(idToCheck == g.getId())
+			if (idToCheck == g.getId())
 			{
 				System.out.println(g.toString());
 				foundGame = true;
@@ -54,18 +54,17 @@ public class GameLibrary
 			}
 		}
 
-		if(!foundGame)
+		if (!foundGame)
 		{
 			System.out.println("Game with ID: " + idToCheck + " was not found.");
 		}
-
 	}
 
 	//prints all games in list to console
 	public void printConsole()
 	{
 
-		for(Game g : gameList)
+		for (Game g : gameList)
 		{
 			System.out.println(g.toString());
 		}
