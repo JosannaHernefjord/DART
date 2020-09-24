@@ -102,17 +102,21 @@ public class Controller
 
 		System.out.print("ID: ");
 		id = sc.nextInt();
-		sc.nextLine();
+		sc.nextLine();			//Read next line to clear scanner buffer.
+
 		System.out.print("Name: ");
 		name = sc.nextLine();
+
 		System.out.print("Birth year: ");
 		birthYear = sc.nextInt();
-		sc.nextLine();
+		sc.nextLine();			//Read next line to clear scanner buffer.
+
 		System.out.print("Address: ");
 		address = sc.nextLine();
+
 		System.out.print("Monthly gross salary: ");
 		grossSalary = sc.nextDouble();
-		sc.nextLine();
+		sc.nextLine();			//Read next line to clear scanner buffer.
 
 		employeeLibrary.addEmployee(id, name, birthYear, address, grossSalary);
 	}
