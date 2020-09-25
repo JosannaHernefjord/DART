@@ -139,9 +139,67 @@ public class Controller
 
 	private void customerRoutine()
 	{
-		Message.printCustomerScreen();
-		//TODO
+		String input = "";
+
+		while (!input.equals("3"))
+		{
+			Message.printCustomerScreen();
+			input = sc.nextLine();
+
+			if (input.equals("1"))
+			{
+				System.out.println("Write the ID of the game you want to rent: ");
+				int id = sc.nextInt();
+				sc.nextLine();
+
+				if (gameLibrary.checkAvailability(id))
+				{
+					gameLibrary.rentGame(id);
+					System.out.println("Game rented!");
+				} else
+				{
+					if (gameLibrary.contains(id))
+						System.out.println("Game with ID: " + id + " is not available.");
+					else
+						System.out.println("Game with ID: " + id + " does not exist.");
+				}
+			} else if (input.equals("2"))
+			{
+				int id;
+				int daysRented;
+
+				System.out.println("Enter the following information: ");
+
+				System.out.print("ID of game to return: ");
+				id = sc.nextInt();
+				sc.nextLine();
+
+				System.out.print("Number of days rented: ");
+				daysRented = sc.nextInt();
+				sc.nextLine();
+
+				if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id))
+				{
+					gameLibrary.returnGame(id);
+					double cost = daysRented * gameLibrary.getDailyRent(id);
+					rentProfit = rentProfit + cost;
+					System.out.println("Game returned! You paid: " + cost + " kr.");
+				} else
+				{
+					if (gameLibrary.contains(id))
+						System.out.println("Game with ID: " + id + " is already returned.");
+					else
+						System.out.println("Game with ID: " + id + " does not exist.");
+				}
+			}
+			else
+			{
+				Message.printInvalidInput();
+			}
+		}
+
 	}
+
 
 	private void addNewEmployee()
 	{
