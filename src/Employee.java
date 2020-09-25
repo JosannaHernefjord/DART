@@ -3,7 +3,7 @@ public class Employee
 	//-----INSTANCE VARIABLES----
 	private int id;
 	private String name;
-	private String adsress;
+	private String address;
 	private int birthYear;
 	private int age;
 	private double grossSalary;
@@ -14,7 +14,7 @@ public class Employee
 		this.id = id;
 		this.name = name;
 		this.birthYear = birthYear;
-		this.adsress = address;
+		this.address = address;
 		this.age = 2020 - birthYear;
 
 		this.grossSalary = grossSalary;
