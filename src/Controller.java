@@ -125,8 +125,9 @@ public class Controller
 				}
 				if (input.equals("6"))
 				{
-					Message.printGamesList();
+					System.out.println("-----------------GAMES-----------------");
 					gameLibrary.printConsole();
+					System.out.println("---------------------------------------");
 				}
 			}
 

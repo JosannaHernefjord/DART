@@ -84,6 +84,19 @@ public class GameLibrary
 		}
 	}
 
+	public boolean contains(int id)
+	{
+		for(Game g : gameList)
+		{
+			if(id == g.getId())
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
+
 	public boolean checkAvailability(int id)
 	{
 		for(Game g : gameList)
@@ -95,6 +108,19 @@ public class GameLibrary
 		}
 
 		return false;
+	}
+
+	public double getDailyRent(int id)
+	{
+		for(Game g : gameList)
+		{
+			if(id == g.getId())
+			{
+				return g.getDailyRent();
+			}
+		}
+
+		return 0;
 	}
 
 	//prints all games in list to console

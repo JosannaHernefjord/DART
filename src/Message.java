@@ -63,7 +63,7 @@ public class Message
 
 	public static void printCreateGame()
 	{
-		System.out.print("Add a game. Please type the game's:");
+		System.out.println("Add a game. Please type the game's:");
 	}
 	public static void printRemoveGame()
 	{
@@ -82,10 +82,5 @@ public class Message
 	{
 		System.out.println("Invalid password.");
 		System.out.println();
-	}
-
-	public static void printGamesList()
-	{
-		System.out.println("Here's all the games: ");
 	}
 }

@@ -34,6 +34,11 @@ public class Game
 		return id;
 	}
 
+	public double getDailyRent()
+	{
+		return dailyRent;
+	}
+
 	public boolean getIsAvailable()
 	{
 		return isAvailable;
