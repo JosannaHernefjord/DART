@@ -191,8 +191,9 @@ public class Controller
 					else
 						System.out.println("Game with ID: " + id + " does not exist.");
 				}
+
 			}
-			else
+			else if(!input.equals("3"))
 			{
 				Message.printInvalidInput();
 			}

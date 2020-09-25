@@ -29,7 +29,9 @@ public class Employee
 
 	public String toString()
 	{
-		return id + " : " + name + " - " + birthYear + " ( " + age + " ): " + grossSalary + "SEK.";
+		return id + ": " + name + " - " + birthYear + " (" + age + "): " +
+				address + " - " + employeeSalary() + " (" + this.grossSalary + ")" + " SEK/month, " +
+				employeeBonus() + " SEK bonus.";
 	}
 
 	public double employeeSalary()
