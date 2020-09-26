@@ -30,18 +30,18 @@ public class Employee
 	public String toString()
 	{
 		return id + ": " + name + " - " + birthYear + " (" + age + "): " +
-				address + " - " + employeeSalary() + " (" + this.grossSalary + ")" + " SEK/month, " +
-				employeeBonus() + " SEK bonus.";
+				address + " - " + " Monthly gross salary: " + this.grossSalary +
+				" - " + "Yearly net salary after bonus:" + (employeeSalary()+ employeeBonus());
 	}
 
 	public double employeeSalary()
 	{
 		if (grossSalary * 12 < 100000)
 		{
-			return grossSalary;
+			return grossSalary*12;
 		} else
 		{
-			return (grossSalary * 0.7);
+			return ((grossSalary * 0.7)*12);
 		}
 	}
 
@@ -50,7 +50,7 @@ public class Employee
 		if (age < 22)
 		{
 			return 4000;
-		} else if (22 < age && age < 30)
+		} else if (age >= 22 && age <= 30 )
 		{
 			return 6000;
 		} else
