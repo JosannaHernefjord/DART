@@ -3,7 +3,7 @@ public class Message
 	public static void printManagerScreen()
 	{
 		System.out.println("Manager Screen - Type one of the options below:");
-		System.out.println("1. Add an employee \n2. View all employees \n3. Return to Main Menu");
+		System.out.println("1. Add an employee \n2. View all employees \n3. Remove employee \n4. View employees net salary \n5. Give out bonus to employees \n6. Return to Main Menu");
 	}
 
 	public static void printEmployeeScreen()
@@ -16,7 +16,7 @@ public class Message
 	public static void printCustomerScreen()
 	{
 		System.out.println("Customer Screen - Type one of the options below:");
-		System.out.println("1. Rent a game \n2. Return a game \n3. Return to Main Menu");
+		System.out.println("1. Rent a game \n2. Return to a game \n3. Return to Main Menu");
 	}
 
 	public static void printMainScreen()
@@ -27,7 +27,7 @@ public class Message
 		System.out.println("1. Enter “M” for Manager \n2. Enter ”E” for Employee \n3. Enter ”C” for Customer \n4. Enter ”X” to exit system");
 
 	}
-		public static void printCreateEmployee()
+	public static void printCreateEmployee()
 	{
 		System.out.println("Creating an Employee. Please type the Employee’s:");
 	}
@@ -35,6 +35,14 @@ public class Message
 	public static void printRemoveEmployee()
 	{
 		System.out.print("Which employee should be removed? ID: ");
+	}
+	public static void printViewEmployeeNetSalary()
+	{
+		System.out.println("For which employee do you want to view net salary? ID:");
+	}
+	public static void printEmployeeBonus()
+	{
+		System.out.println("Which employee do you want to give a bonus to? ID:");
 	}
 
 	public static void printInvalidInput()

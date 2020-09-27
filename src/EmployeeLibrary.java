@@ -46,5 +46,43 @@ public class EmployeeLibrary
 			System.out.println(e.toString());        //Print the employee info
 		}
 	}
-}
 
+	public void printSalary(int id)
+	{
+		boolean foundEmployee = false;
+
+		for (Employee e : employeeList)
+		{
+			if (e.getId() == id)
+			{
+				System.out.println(e.employeeSalary());
+				foundEmployee = true;
+				break;
+			}
+		}
+
+		if (!foundEmployee)        //If ID was not found in the list
+		{
+			System.out.println("Employee with ID: " + id + " was not found.");
+		}
+	}
+
+	public void printBonus(int id)
+	{
+		boolean foundEmployee = false;        //False until proven true
+
+		for (Employee e : employeeList)        //For each Employee "e" in customerList
+		{
+			if (e.getId() == id)                //If e's ID == idToRemove
+			{
+				System.out.println(e.employeeBonus());    //Remove e from customerList
+				foundEmployee = true;                    //Employee found!
+				break;                                    ////No use in looking any more
+			}
+		}
+		if (!foundEmployee)
+		{
+			System.out.println("Employee with ID: " + id + "was not found");
+		}
+	}
+}

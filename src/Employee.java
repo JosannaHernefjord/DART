@@ -7,6 +7,7 @@ public class Employee
 	private int birthYear;
 	private int age;
 	private double grossSalary;
+	private int bonus;
 
 	//--------------CONSTRUCTOR---------
 	public Employee(int id, String name, int birthYear, String address, double grossSalary)
@@ -18,6 +19,7 @@ public class Employee
 		this.age = 2020 - birthYear;
 
 		this.grossSalary = grossSalary;
+
 	}
 
 	//---------METHODS-----------
@@ -30,32 +32,34 @@ public class Employee
 	public String toString()
 	{
 		return id + ": " + name + " - " + birthYear + " (" + age + "): " +
-				address + " - " + " Monthly gross salary: " + this.grossSalary +
-				" - " + "Yearly net salary after bonus:" + (employeeSalary()+ employeeBonus());
+				address + " - " + grossSalary +"SEK";
 	}
 
-	public double employeeSalary()
+	public String employeeSalary()
 	{
 		if (grossSalary * 12 < 100000)
 		{
-			return grossSalary*12;
+			return "Monthly net salary: " + grossSalary + " - " + "Yearly net salary: " + (grossSalary*12+ bonus);
 		} else
 		{
-			return ((grossSalary * 0.7)*12);
+			return "Montlhy net salary: " + grossSalary * 0.7 + " - " + "Yearly net salary: " + ((grossSalary * 0.7)*12+ bonus) ;
 		}
 	}
 
-	public double employeeBonus()
+	public String employeeBonus()
 	{
 		if (age < 22)
 		{
-			return 4000;
+			bonus = 4000;
+			return "Employee will receive 4000SEK in bonus";
 		} else if (age >= 22 && age <= 30 )
 		{
-			return 6000;
+			bonus = 6000;
+			return "Employee will receive 6000SEK in bonus";
 		} else
 		{
-			return 7500;
+			bonus = 7500;
+			return "Employee will receive 7500SEK in bonus";
 		}
 	}
 }

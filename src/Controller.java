@@ -56,7 +56,7 @@ public class Controller
 
 		if (input.equals("admin1234"))
 		{
-			while (!input.equals("4"))
+			while (!input.equals("6"))
 			{
 				Message.printManagerScreen();
 				input = sc.nextLine();
@@ -74,7 +74,19 @@ public class Controller
 					int id = sc.nextInt();
 					sc.nextLine();
 					employeeLibrary.removeEmployee(id);
-				} else if (!input.equals("4"))
+				} else if (input.equals("4"))
+				{
+					Message.printViewEmployeeNetSalary();
+					int id = sc.nextInt();
+					sc.nextLine();
+					employeeLibrary.printSalary(id);
+				} else if (input.equals("5"))
+				{
+					Message.printEmployeeBonus();
+					int id = sc.nextInt();
+					sc.nextLine();
+					employeeLibrary.printBonus(id);
+				} else if (!input.equals("6"))
 				{
 					Message.printInvalidInput();
 				}
@@ -191,9 +203,8 @@ public class Controller
 					else
 						System.out.println("Game with ID: " + id + " does not exist.");
 				}
-
 			}
-			else if(!input.equals("3"))
+			else
 			{
 				Message.printInvalidInput();
 			}
