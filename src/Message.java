@@ -16,7 +16,7 @@ public class Message
 	public static void printCustomerScreen()
 	{
 		System.out.println("Customer Screen - Type one of the options below:");
-		System.out.println("1. Rent a game \n2. Return to a game \n3. Return to Main Menu");
+		System.out.println("1. Rent a game \n2. Return a game \n3. Return to Main Menu");
 	}
 
 	public static void printMainScreen()
