@@ -6,6 +6,7 @@ public class Controller
 	private EmployeeLibrary employeeLibrary;
 	private GameLibrary gameLibrary;
 	private CustomerLibrary customerLibrary;
+	private SongAlbumLibrary songAlbumLibrary;
 	private AddItem addItem;
 	private double rentProfit;
 
@@ -15,6 +16,7 @@ public class Controller
 		employeeLibrary = new EmployeeLibrary();
 		gameLibrary = new GameLibrary();
 		customerLibrary = new CustomerLibrary();
+		songAlbumLibrary = new SongAlbumLibrary();
 		addItem = new AddItem();
 		rentProfit = 0;
 	}
@@ -62,7 +64,7 @@ public class Controller
 			{
 				Message.printManagerScreen();
 				input = sc.nextLine();
-
+				int id;
 				switch (input)
 				{
 					case "1":
@@ -74,7 +76,7 @@ public class Controller
 						System.out.println("---------------------------------------");
 					case "3":
 						Message.printRemoveEmployee();
-						int id = sc.nextInt();
+						id = sc.nextInt();
 						sc.nextLine();
 						employeeLibrary.removeEmployee(id);
 					case "4":
@@ -110,7 +112,8 @@ public class Controller
 			{
 				Message.printEmployeeScreen();
 				input = sc.nextLine();
-
+				int id;
+				
 				switch (input)
 				{
 					case "1":
@@ -118,7 +121,7 @@ public class Controller
 						break;
 					case "2":
 						Message.printRemoveGame();
-						int id = sc.nextInt();
+						id = sc.nextInt();
 						sc.nextLine();
 						gameLibrary.removeGame(id);
 						break;
