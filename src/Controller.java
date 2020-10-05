@@ -21,15 +21,15 @@ public class Controller
 
 	public void runApplication()
 	{
-		String userInput = "";
+		String Input = "";
 
-		while (!userInput.equals("X"))
+		while (!Input.equals("X"))
 		{
 			Message.printMainScreen();
-			userInput = sc.nextLine();
-			userInput = userInput.toUpperCase();	//To make small letters to capital letters
+			Input = sc.nextLine();
+			Input = Input.toUpperCase();    //To make small letters to capital letters
 
-			switch (userInput)
+			switch (Input)
 			{
 				case "M":
 					managerRoutine();
@@ -62,42 +62,41 @@ public class Controller
 			{
 				Message.printManagerScreen();
 				input = sc.nextLine();
-				if (input.equals("1"))
-				{
-					addItem.addNewEmployee();
 
-				} else if (input.equals("2"))
+				switch (input)
 				{
-					System.out.println("---------------EMPLOYEES---------------");
-					employeeLibrary.printConsole();
-					System.out.println("---------------------------------------");
-				} else if (input.equals("3"))
-				{
-					Message.printRemoveEmployee();
-					int id = sc.nextInt();
-					sc.nextLine();
-					employeeLibrary.removeEmployee(id);
-				} else if (input.equals("4"))
-				{
-					Message.printViewEmployeeNetSalary();
-					int id = sc.nextInt();
-					sc.nextLine();
-					employeeLibrary.printSalary(id);
-				} else if (input.equals("5"))
-				{
-					Message.printEmployeeBonus();
-					int id = sc.nextInt();
-					sc.nextLine();
-					employeeLibrary.printBonus(id);
-				} else if (!input.equals("6"))
-				{
-					Message.printInvalidInput();
+					case "1":
+						addItem.addNewEmployee();
+						break;
+					case "2":
+						System.out.println("---------------EMPLOYEES---------------");
+						employeeLibrary.printConsole();
+						System.out.println("---------------------------------------");
+					case "3":
+						Message.printRemoveEmployee();
+						int id = sc.nextInt();
+						sc.nextLine();
+						employeeLibrary.removeEmployee(id);
+					case "4":
+						Message.printViewEmployeeNetSalary();
+						id = sc.nextInt();
+						sc.nextLine();
+						employeeLibrary.printSalary(id);
+						break;
+					case "5":
+						Message.printEmployeeBonus();
+						id = sc.nextInt();
+						sc.nextLine();
+						employeeLibrary.printBonus(id);
+						break;
+					default:
+						Message.printInvalidInput();
+						break;
 				}
 			}
-		} else
-		{
-			Message.printInvalidPassword();
+
 		}
+		sc.close();
 	}
 
 	private void employeeRoutine()
@@ -112,44 +111,42 @@ public class Controller
 				Message.printEmployeeScreen();
 				input = sc.nextLine();
 
-				if (input.equals("1"))
+				switch (input)
 				{
-					addItem.addNewGame();
-				}
-				if (input.equals("2"))
-				{
-					Message.printRemoveGame();
-					int id = sc.nextInt();
-					sc.nextLine();
-					gameLibrary.removeGame(id);
-				}
-				if (input.equals("3"))
-				{
-					addItem.addCustomer();
-				}
-				if (input.equals("4"))
-				{
-					Message.printRemoveCustomer();
-					int id = sc.nextInt();
-					sc.nextLine();
-					customerLibrary.removeCustomer(id);
-				}
-				if (input.equals("5"))
-				{
-					System.out.println("Total rent profit is: " + rentProfit + " kr.");
-				}
-				if (input.equals("6"))
-				{
-					System.out.println("-----------------GAMES-----------------");
-					gameLibrary.printConsole();
-					System.out.println("---------------------------------------");
+					case "1":
+						addItem.addNewGame();
+						break;
+					case "2":
+						Message.printRemoveGame();
+						int id = sc.nextInt();
+						sc.nextLine();
+						gameLibrary.removeGame(id);
+						break;
+					case "3":
+						addItem.addCustomer();
+						break;
+					case "4":
+						Message.printRemoveCustomer();
+						id = sc.nextInt();
+						sc.nextLine();
+						customerLibrary.removeCustomer(id);
+						break;
+					case "5":
+						System.out.println("Total rent profit is: " + rentProfit + " kr.");
+						break;
+					case "6":
+						System.out.println("-----------------GAMES-----------------");
+						gameLibrary.printConsole();
+						System.out.println("---------------------------------------");
+						break;
+					default:
+						Message.printInvalidPassword();
+						break;
 				}
 			}
 
-		} else
-		{
-			Message.printInvalidPassword();
 		}
+		sc.close();
 	}
 
 	private void customerRoutine()
@@ -161,57 +158,58 @@ public class Controller
 			Message.printCustomerScreen();
 			input = sc.nextLine();
 
-			if (input.equals("1"))     // Rent a game
+			switch (input)
 			{
-				System.out.println("Write the ID of the game you want to rent: ");
-				int id = sc.nextInt();
-				sc.nextLine();
+				case "1":     // Rent a game
 
-				if (gameLibrary.checkAvailability(id))
+					System.out.println("Write the ID of the game you want to rent: ");
+					int id = sc.nextInt();
+					sc.nextLine();
+
+					if (gameLibrary.checkAvailability(id))
+					{
+						gameLibrary.rentGame(id);
+						System.out.println("Game rented!");
+					} else
+					{
+						if (gameLibrary.contains(id))
+							System.out.println("Game with ID: " + id + " is not available.");
+						else
+							System.out.println("Game with ID: " + id + " does not exist.");
+					}
+
+				case "2":   //Return a game
 				{
-					gameLibrary.rentGame(id);
-					System.out.println("Game rented!");
-				} else
-				{
-					if (gameLibrary.contains(id))
-						System.out.println("Game with ID: " + id + " is not available.");
-					else
-						System.out.println("Game with ID: " + id + " does not exist.");
+					int daysRented;
+
+					System.out.println("Enter the following information: ");
+
+					System.out.print("ID of game to return: ");
+					id = sc.nextInt();
+					sc.nextLine();
+
+					System.out.print("Number of days rented: ");
+					daysRented = sc.nextInt();
+					sc.nextLine();
+
+					if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id))
+					{
+						gameLibrary.returnGame(id);
+						double cost = daysRented * gameLibrary.getDailyRent(id);
+						rentProfit = rentProfit + cost;
+						System.out.println("Game returned! You paid: " + cost + " kr.");
+					} else
+					{
+						if (gameLibrary.contains(id))
+							System.out.println("Game with ID: " + id + " is already returned.");
+						else
+							System.out.println("Game with ID: " + id + " does not exist.");
+					}
 				}
-			} else if (input.equals("2"))    //Return a game
-			{
-				int id;
-				int daysRented;
-
-				System.out.println("Enter the following information: ");
-
-				System.out.print("ID of game to return: ");
-				id = sc.nextInt();
-				sc.nextLine();
-
-				System.out.print("Number of days rented: ");
-				daysRented = sc.nextInt();
-				sc.nextLine();
-
-				if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id))
-				{
-					gameLibrary.returnGame(id);
-					double cost = daysRented * gameLibrary.getDailyRent(id);
-					rentProfit = rentProfit + cost;
-					System.out.println("Game returned! You paid: " + cost + " kr.");
-				} else
-				{
-					if (gameLibrary.contains(id))
-						System.out.println("Game with ID: " + id + " is already returned.");
-					else
-						System.out.println("Game with ID: " + id + " does not exist.");
-				}
+				default:
+					Message.printInvalidInput();
 			}
-			else
-			{
-				Message.printInvalidInput();
-			}
+
 		}
-
 	}
 }
