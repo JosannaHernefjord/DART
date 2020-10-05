@@ -6,6 +6,7 @@ public class Controller
 	private EmployeeLibrary employeeLibrary;
 	private GameLibrary gameLibrary;
 	private CustomerLibrary customerLibrary;
+	private AddItem addItem;
 	private double rentProfit;
 
 	public Controller()
@@ -14,6 +15,7 @@ public class Controller
 		employeeLibrary = new EmployeeLibrary();
 		gameLibrary = new GameLibrary();
 		customerLibrary = new CustomerLibrary();
+		addItem = new AddItem();
 		rentProfit = 0;
 	}
 
@@ -25,7 +27,7 @@ public class Controller
 		{
 			Message.printMainScreen();
 			userInput = sc.nextLine();
-			userInput = userInput.toUpperCase();
+			userInput = userInput.toUpperCase();	//To make small letters to capital letters
 
 			switch (userInput)
 			{
@@ -62,7 +64,8 @@ public class Controller
 				input = sc.nextLine();
 				if (input.equals("1"))
 				{
-					addNewEmployee();
+					addItem.addNewEmployee();
+
 				} else if (input.equals("2"))
 				{
 					System.out.println("---------------EMPLOYEES---------------");
@@ -111,7 +114,7 @@ public class Controller
 
 				if (input.equals("1"))
 				{
-					addNewGame();
+					addItem.addNewGame();
 				}
 				if (input.equals("2"))
 				{
@@ -122,7 +125,7 @@ public class Controller
 				}
 				if (input.equals("3"))
 				{
-					addCustomer();
+					addItem.addCustomer();
 				}
 				if (input.equals("4"))
 				{
@@ -158,7 +161,7 @@ public class Controller
 			Message.printCustomerScreen();
 			input = sc.nextLine();
 
-			if (input.equals("1"))
+			if (input.equals("1"))     // Rent a game
 			{
 				System.out.println("Write the ID of the game you want to rent: ");
 				int id = sc.nextInt();
@@ -175,7 +178,7 @@ public class Controller
 					else
 						System.out.println("Game with ID: " + id + " does not exist.");
 				}
-			} else if (input.equals("2"))
+			} else if (input.equals("2"))    //Return a game
 			{
 				int id;
 				int daysRented;
@@ -210,77 +213,5 @@ public class Controller
 			}
 		}
 
-	}
-
-
-	private void addNewEmployee()
-	{
-		int id, birthYear;
-		double grossSalary;
-		String name, address;
-
-		Message.printCreateEmployee();
-
-		System.out.print("ID: ");
-		id = sc.nextInt();
-		sc.nextLine();            //Read next line to clear scanner buffer.
-
-		System.out.print("Name: ");
-		name = sc.nextLine();
-
-		System.out.print("Birth year: ");
-		birthYear = sc.nextInt();
-		sc.nextLine();            //Read next line to clear scanner buffer.
-
-		System.out.print("Address: ");
-		address = sc.nextLine();
-
-		System.out.print("Monthly gross salary: ");
-		grossSalary = sc.nextDouble();
-		sc.nextLine();            //Read next line to clear scanner buffer.
-
-		employeeLibrary.addEmployee(id, name, birthYear, address, grossSalary);
-	}
-
-	private void addCustomer()
-	{
-		int id;
-		String name;
-
-		Message.printCreateCustomer();
-
-		System.out.print("ID: ");
-		id = sc.nextInt();
-		sc.nextLine();
-
-		System.out.print("Name: ");
-		name = sc.nextLine();
-
-		customerLibrary.addCustomer(id, name);
-	}
-
-	private void addNewGame()
-	{
-		int id;
-		String name, genre;
-		double dailyRent;
-
-		Message.printCreateGame();
-
-		System.out.print("ID: ");
-		id = sc.nextInt();
-		sc.nextLine();
-
-		System.out.print("Name: ");
-		name = sc.nextLine();
-
-		System.out.print("Genre: ");
-		genre = sc.nextLine();
-
-		System.out.print("Daily rent: ");
-		dailyRent = sc.nextDouble();
-		sc.nextLine();
-
-		gameLibrary.addGame(id, name, genre, dailyRent);
 	}
 }

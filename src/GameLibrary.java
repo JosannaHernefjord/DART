@@ -40,26 +40,6 @@ public class GameLibrary
 		}
 	}
 
-	public void gameStatus(int idToCheck)
-	{
-		boolean foundGame = false;
-
-		for (Game g : gameList)
-		{
-			if (idToCheck == g.getId())
-			{
-				System.out.println(g.toString());
-				foundGame = true;
-				break;
-			}
-		}
-
-		if (!foundGame)
-		{
-			System.out.println("Game with ID: " + idToCheck + " was not found.");
-		}
-	}
-
 	public void rentGame(int id)
 	{
 		for(Game g : gameList)
