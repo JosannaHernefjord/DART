@@ -10,13 +10,13 @@ public class Message
 	{
 		System.out.println("Employee Screen - Type one of the options below:");
 		System.out.println("1. Register a game \n2. Remove a game \n3. Register a customer \n4. Remove a customer");
-		System.out.println("5. Show total rent profit \n6. View all games \n7. Return to Main Menu");
+		System.out.println("5. Show total rent profit \n6. View all games \n7. Register a song album \n8 Remove song album \n9. Return to Main Menu");
 	}
 
 	public static void printCustomerScreen()
 	{
 		System.out.println("Customer Screen - Type one of the options below:");
-		System.out.println("1. Rent a game \n2. Return to a game \n3. Return to Main Menu");
+		System.out.println("1. Rent a game \n2. Return game \n3. Rent a song album \n4. Return song album \n5. Return to Main Menu");
 	}
 
 	public static void printMainScreen()
@@ -70,6 +70,14 @@ public class Message
 	public static void printRemoveCustomer()
 	{
 		System.out.print("Which customer should be removed? ID: ");
+	}
+	public static void printCreateSongAlbum()
+	{
+		System.out.println("Add a song album. Please type the song album's:");
+	}
+	public static void printRemoveSongAlbum()
+	{
+		System.out.println("Which song album should be removed? ID: ");
 	}
 
 	public static void printInvalidPassword()

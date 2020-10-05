@@ -6,7 +6,7 @@ public class Controller
 	private EmployeeLibrary employeeLibrary;
 	private GameLibrary gameLibrary;
 	private CustomerLibrary customerLibrary;
-	private SongAlbumLibrary songAlbumLibrary;
+	private AlbumLibrary albumLibrary;
 	private AddItem addItem;
 	private double rentProfit;
 
@@ -16,7 +16,7 @@ public class Controller
 		employeeLibrary = new EmployeeLibrary();
 		gameLibrary = new GameLibrary();
 		customerLibrary = new CustomerLibrary();
-		songAlbumLibrary = new SongAlbumLibrary();
+		albumLibrary = new AlbumLibrary();
 		addItem = new AddItem();
 		rentProfit = 0;
 	}
@@ -113,7 +113,7 @@ public class Controller
 				Message.printEmployeeScreen();
 				input = sc.nextLine();
 				int id;
-				
+
 				switch (input)
 				{
 					case "1":
@@ -142,12 +142,18 @@ public class Controller
 						gameLibrary.printConsole();
 						System.out.println("---------------------------------------");
 						break;
+					case"7":
+						addItem.addNewSongAlbum();
+					case"8":
+						Message.printRemoveSongAlbum();
+						id = sc.nextInt();
+						sc.nextLine();
+						albumLibrary.removeAlbum(id);
 					default:
 						Message.printInvalidPassword();
 						break;
 				}
 			}
-
 		}
 		sc.close();
 	}
@@ -160,13 +166,14 @@ public class Controller
 		{
 			Message.printCustomerScreen();
 			input = sc.nextLine();
+			int id;
 
 			switch (input)
 			{
 				case "1":     // Rent a game
 
 					System.out.println("Write the ID of the game you want to rent: ");
-					int id = sc.nextInt();
+					id = sc.nextInt();
 					sc.nextLine();
 
 					if (gameLibrary.checkAvailability(id))
@@ -209,6 +216,43 @@ public class Controller
 							System.out.println("Game with ID: " + id + " does not exist.");
 					}
 				}
+				case "3":
+					System.out.println("-----------------SONG ALBUMS-----------------");
+					albumLibrary.printAllAlbums();
+					System.out.println("---------------------------------------------");
+
+					System.out.println("Which song album would you like to rent? ID: ");
+					id = sc.nextInt();
+					sc.nextLine();
+
+					if (albumLibrary.checkAvailability(id))
+					{
+						albumLibrary.rentAlbum(id);
+						System.out.println("Song album rented!");
+					} else
+					{
+						if (albumLibrary.contains(id))
+							System.out.println("Album with ID: " + id + " is already rented.");
+						else
+							System.out.println("Album with ID: " + id + " not found.");
+					}
+				case "4":
+					System.out.println("Which song album would you like to return? ID: ");
+					id = sc.nextInt();
+					sc.nextLine();
+
+					System.out.println("Number of days rented: ");
+					int daysRented = sc.nextInt();
+					sc.nextLine();
+
+					if (albumLibrary.contains(id) && !albumLibrary.checkAvailability(id))
+					{
+						albumLibrary.returnAlbum(id);
+						double cost = daysRented * albumLibrary.getDailyRent(id);
+						rentProfit = rentProfit + cost;
+						System.out.println("Song album returned! You paid: " + cost + " kr.");
+					}
+
 				default:
 					Message.printInvalidInput();
 			}

@@ -1,4 +1,4 @@
-public class SongAlbum
+public class Album
 {
 	//-----Song album attributes----
 	private int id;
@@ -9,7 +9,7 @@ public class SongAlbum
 	private double rentPerDay;
 	private boolean isAvailable;
 
-	public SongAlbum(int id, String title, String artist, int releaseYear, double rentPerDay)
+	public Album(int id, String title, String artist, int releaseYear, double rentPerDay)
 	{
 		this.id = id;
 		this.title = title;

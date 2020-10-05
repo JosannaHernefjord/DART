@@ -6,6 +6,7 @@ public class AddItem
 	private EmployeeLibrary employeeLibrary;
 	private GameLibrary gameLibrary;
 	private CustomerLibrary customerLibrary;
+	private AlbumLibrary albumLibrary;
 
 	public AddItem()
 	{
@@ -13,6 +14,7 @@ public class AddItem
 		employeeLibrary = new EmployeeLibrary();
 		gameLibrary = new GameLibrary();
 		customerLibrary = new CustomerLibrary();
+		albumLibrary = new AlbumLibrary();
 	}
 	public void addNewEmployee()
 	{
@@ -83,5 +85,36 @@ public class AddItem
 		sc.nextLine();
 
 		gameLibrary.addGame(id, name, genre, dailyRent);
+	}
+	public void addNewSongAlbum()
+	{
+		int id;
+		String title;
+		String artist;
+		int releaseYear;
+		double rentPerDay;
+
+		Message.printCreateSongAlbum();
+
+		System.out.print("ID: ");
+		id = sc.nextInt();
+		sc.nextLine();
+
+		System.out.print("Title: ");
+		title = sc.nextLine();
+
+		System.out.print("Artist: ");
+		artist = sc.nextLine();
+
+		System.out.print("Released in year: ");
+		releaseYear = sc.nextInt();
+		sc.nextLine();
+
+		System.out.print("Daily rent: ");
+		rentPerDay = sc.nextDouble();
+		sc.nextLine();
+
+		albumLibrary.addAlbum(id,title,artist,releaseYear,rentPerDay);
+
 	}
 }
