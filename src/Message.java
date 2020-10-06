@@ -16,7 +16,7 @@ public class Message
 	public static void printCustomerScreen()
 	{
 		System.out.println("Customer Screen - Type one of the options below:");
-		System.out.println("1. Rent a game \n2. Return game \n3. Rent a song album \n4. Return song album \n5. Send request for membership upgrade \n6. Return to Main Menu");
+		System.out.println("1. Rent a game \n2. Return game \n3. Rent a song album \n4. Return song album \n5. Send request for membership upgrade \n6. Log out and return to Main Menu");
 	}
 
 	public static void printMainScreen()
@@ -27,6 +27,7 @@ public class Message
 		System.out.println("1. Enter “M” for Manager \n2. Enter ”E” for Employee \n3. Enter ”C” for Customer \n4. Enter ”X” to exit system");
 
 	}
+
 	public static void printCreateEmployee()
 	{
 		System.out.println("Creating an Employee. Please type the Employee’s:");
@@ -36,10 +37,12 @@ public class Message
 	{
 		System.out.print("Which employee should be removed? ID: ");
 	}
+
 	public static void printViewEmployeeNetSalary()
 	{
 		System.out.println("For which employee do you want to view net salary? ID:");
 	}
+
 	public static void printEmployeeBonus()
 	{
 		System.out.println("Which employee do you want to give a bonus to? ID:");
@@ -59,22 +62,27 @@ public class Message
 	{
 		System.out.println("Add a game. Please type the game's:");
 	}
+
 	public static void printRemoveGame()
 	{
 		System.out.println("Which game should be removed? ID: ");
 	}
+
 	public static void printCreateCustomer()
 	{
 		System.out.println("Creating an Customer. Please type the Customer’s:");
 	}
+
 	public static void printRemoveCustomer()
 	{
 		System.out.print("Which customer should be removed? ID: ");
 	}
+
 	public static void printCreateSongAlbum()
 	{
 		System.out.println("Add a song album. Please type the song album's:");
 	}
+
 	public static void printRemoveSongAlbum()
 	{
 		System.out.println("Which song album should be removed? ID: ");

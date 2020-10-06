@@ -5,13 +5,11 @@ public class EmployeeLibrary
 {
 	//-----INSTANCE VARIABLES----
 	private List<Employee> employeeList;
-	private CustomerLibrary customerLibrary;
 
 	//--------------CONSTRUCTOR---------
 	public EmployeeLibrary()
 	{
 		employeeList = new ArrayList<>();
-		customerLibrary = new CustomerLibrary();
 	}
 
 	//--------------METHODS------------
@@ -87,11 +85,5 @@ public class EmployeeLibrary
 			System.out.println("Employee with ID: " + id + "was not found");
 		}
 	}
-	public void printRequestList()
-	{
-		for(Customer customer : customerLibrary.getPendingMembershipRequests())
-		{
-			System.out.println(customer.getHasRequestedMembership());
-		}
-	}
+
 }

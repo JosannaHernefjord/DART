@@ -35,17 +35,18 @@ public class Employee
 	public String toString()
 	{
 		return id + ": " + name + " - " + birthYear + " (" + age + "): " +
-				address + " - " + grossSalary +"SEK";
+				address + " - " + grossSalary + "SEK";
 	}
 
 	public String employeeSalary()
 	{
 		if (grossSalary * 12 < 100000)
 		{
-			return "Monthly net salary: " + grossSalary + " - " + "Yearly net salary: " + (grossSalary*12+ bonus);
-		} else
+			return "Monthly net salary: " + grossSalary + " - " + "Yearly net salary: " + (grossSalary * 12 + bonus);
+		}
+		else
 		{
-			return "Montlhy net salary: " + grossSalary * taxCut + " - " + "Yearly net salary: " + ((grossSalary * taxCut)*12+ bonus) ;
+			return "Montlhy net salary: " + grossSalary * taxCut + " - " + "Yearly net salary: " + ((grossSalary * taxCut) * 12 + bonus);
 		}
 	}
 
@@ -55,11 +56,13 @@ public class Employee
 		{
 			bonus = bonusLow;
 			return "Employee will receive 4000SEK in bonus";
-		} else if (age >= 22 && age <= 30 )
+		}
+		else if (age <= 30)
 		{
 			bonus = bonusMedium;
 			return "Employee will receive 6000SEK in bonus";
-		} else
+		}
+		else
 		{
 			bonus = bonusHigh;
 			return "Employee will receive 7500SEK in bonus";

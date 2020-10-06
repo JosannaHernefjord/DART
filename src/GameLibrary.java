@@ -42,9 +42,9 @@ public class GameLibrary
 
 	public void rentGame(int id)
 	{
-		for(Game game : gameList)
+		for (Game game : gameList)
 		{
-			if(id == game.getId())
+			if (id == game.getId())
 			{
 				game.rentOut();
 				break;
@@ -54,9 +54,9 @@ public class GameLibrary
 
 	public void returnGame(int id)
 	{
-		for(Game game : gameList)
+		for (Game game : gameList)
 		{
-			if(id == game.getId())
+			if (id == game.getId())
 			{
 				game.returnGame();
 				break;
@@ -66,9 +66,9 @@ public class GameLibrary
 
 	public boolean contains(int id)
 	{
-		for(Game game : gameList)
+		for (Game game : gameList)
 		{
-			if(id == game.getId())
+			if (id == game.getId())
 			{
 				return true;
 			}
@@ -79,9 +79,9 @@ public class GameLibrary
 
 	public boolean checkAvailability(int id)
 	{
-		for(Game game : gameList)
+		for (Game game : gameList)
 		{
-			if(id == game.getId())
+			if (id == game.getId())
 			{
 				return game.getIsAvailable();
 			}
@@ -92,9 +92,9 @@ public class GameLibrary
 
 	public double getDailyRent(int id)
 	{
-		for(Game game : gameList)
+		for (Game game : gameList)
 		{
-			if(id == game.getId())
+			if (id == game.getId())
 			{
 				return game.getDailyRent();
 			}

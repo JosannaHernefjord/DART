@@ -7,7 +7,6 @@ public class Controller
 	private GameLibrary gameLibrary;
 	private CustomerLibrary customerLibrary;
 	private AlbumLibrary albumLibrary;
-	private AddItem addItem;
 	private double rentProfit;
 
 	public Controller()
@@ -17,7 +16,6 @@ public class Controller
 		gameLibrary = new GameLibrary();
 		customerLibrary = new CustomerLibrary();
 		albumLibrary = new AlbumLibrary();
-		addItem = new AddItem();
 		rentProfit = 0;
 	}
 
@@ -68,17 +66,19 @@ public class Controller
 				switch (input)
 				{
 					case "1":
-						addItem.addNewEmployee();
+						addNewEmployee();
 						break;
 					case "2":
 						System.out.println("---------------EMPLOYEES---------------");
 						employeeLibrary.printConsole();
 						System.out.println("---------------------------------------");
+						break;
 					case "3":
 						Message.printRemoveEmployee();
 						id = sc.nextInt();
 						sc.nextLine();
 						employeeLibrary.removeEmployee(id);
+						break;
 					case "4":
 						Message.printViewEmployeeNetSalary();
 						id = sc.nextInt();
@@ -92,13 +92,15 @@ public class Controller
 						employeeLibrary.printBonus(id);
 						break;
 					default:
-						if(input.equals("6"))
-						{	break;  }
-						else
-						{	Message.printInvalidInput(); break; }
+						if (!input.equals("6"))
+						{
+							Message.printInvalidInput();
+						}
+						break;
 				}
 			}
-		}else Message.printInvalidPassword();
+		}
+		else Message.printInvalidPassword();
 	}
 
 	private void employeeRoutine()
@@ -117,7 +119,7 @@ public class Controller
 				switch (input)
 				{
 					case "1":
-						addItem.addNewGame();
+						addNewGame();
 						break;
 					case "2":
 						Message.printRemoveGame();
@@ -126,7 +128,7 @@ public class Controller
 						gameLibrary.removeGame(id);
 						break;
 					case "3":
-						addItem.addCustomer();
+						addCustomer();
 						break;
 					case "4":
 						Message.printRemoveCustomer();
@@ -142,141 +144,287 @@ public class Controller
 						gameLibrary.printConsole();
 						System.out.println("---------------------------------------");
 						break;
-					case"7":
-						addItem.addNewSongAlbum();
-					case"8":
+					case "7":
+						addNewSongAlbum();
+						break;
+					case "8":
 						Message.printRemoveSongAlbum();
 						id = sc.nextInt();
 						sc.nextLine();
 						albumLibrary.removeAlbum(id);
-					case"9":
+						break;
+					case "9":
 						System.out.println("------MEMBERSHIP REQUESTS------");
-						employeeLibrary.printRequestList();
+						printRequestList();
 						System.out.println("-------------------------------");
+						break;
 					default:
-						if(input.equals("10"))
-						{	break;  }
-						else
-						{	Message.printInvalidInput(); break; }
+					{
+						if (!input.equals("10"))
+						{
+							Message.printInvalidInput();
+						}
+						break;
+					}
 				}
 			}
-		}else Message.printInvalidPassword();
+		}
+		else
+			Message.printInvalidPassword();
 	}
 
 	private void customerRoutine()
 	{
 		String input = "";
+		Customer activeCustomer;
 
-		while (!input.equals("6"))
+		System.out.print("Enter ID: ");
+		int loginId = sc.nextInt();
+		sc.nextLine();
+		activeCustomer = customerLibrary.getCustomer(loginId);
+		System.out.print("Enter password: ");
+		String password = sc.nextLine();
+		if (activeCustomer.checkPassword(password))
 		{
-			Message.printCustomerScreen();
-			input = sc.nextLine();
-			int id;
-			int daysRented;
-			switch (input)
+			while (!input.equals("6"))
 			{
-				case "1":     // Rent a game
+				Message.printCustomerScreen();
+				input = sc.nextLine();
+				int id;
+				int daysRented;
+				switch (input)
+				{
+					case "1":     // Rent a game
 
-					System.out.println("Write the ID of the game you want to rent: ");
-					id = sc.nextInt();
-					sc.nextLine();
+						System.out.println("Write the ID of the game you want to rent: ");
+						id = sc.nextInt();
+						sc.nextLine();
 
-					if (gameLibrary.checkAvailability(id))
-					{
-						gameLibrary.rentGame(id);
-						System.out.println("Game rented!");
-					} else
-					{
-						if (gameLibrary.contains(id))
-							System.out.println("Game with ID: " + id + " is not available.");
+						if (gameLibrary.checkAvailability(id))
+						{
+							gameLibrary.rentGame(id);
+							System.out.println("Game rented!");
+						}
 						else
-							System.out.println("Game with ID: " + id + " does not exist.");
-					}
-					break;
+						{
+							if (gameLibrary.contains(id))
+								System.out.println("Game with ID: " + id + " is not available.");
+							else
+								System.out.println("Game with ID: " + id + " does not exist.");
+						}
+						break;
 
-				case "2":   		//Return a game
+					case "2":        //Return a game
 
-					System.out.println("Enter the following information: ");
+						System.out.println("Enter the following information: ");
 
-					System.out.print("ID of game to return: ");
-					id = sc.nextInt();
-					sc.nextLine();
+						System.out.print("ID of game to return: ");
+						id = sc.nextInt();
+						sc.nextLine();
 
-					System.out.print("Number of days rented: ");
-					daysRented = sc.nextInt();
-					sc.nextLine();
+						System.out.print("Number of days rented: ");
+						daysRented = sc.nextInt();
+						sc.nextLine();
 
-					if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id))
-					{
-						gameLibrary.returnGame(id);
-						double cost = daysRented * gameLibrary.getDailyRent(id);
-						rentProfit = rentProfit + cost;
-						System.out.println("Game returned! You paid: " + cost + " kr.");
-					} else
-					{
-						if (gameLibrary.contains(id))
-							System.out.println("Game with ID: " + id + " is already returned.");
+						if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id))
+						{
+							gameLibrary.returnGame(id);
+							double cost = daysRented * gameLibrary.getDailyRent(id);
+							rentProfit = rentProfit + cost;
+							System.out.println("Game returned! You paid: " + cost + " kr.");
+						}
 						else
-							System.out.println("Game with ID: " + id + " does not exist.");
-					}
-					break;
+						{
+							if (gameLibrary.contains(id))
+								System.out.println("Game with ID: " + id + " is already returned.");
+							else
+								System.out.println("Game with ID: " + id + " does not exist.");
+						}
+						break;
 
-				case "3":
-					System.out.println("-----------------ALBUMS-----------------");
-					albumLibrary.printAllAlbums();
-					System.out.println("---------------------------------------------");
+					case "3":
+						System.out.println("-----------------ALBUMS-----------------");
+						albumLibrary.printAllAlbums();
+						System.out.println("---------------------------------------------");
 
-					System.out.println("Which album would you like to rent? ID: ");
-					id = sc.nextInt();
-					sc.nextLine();
+						System.out.println("Which album would you like to rent? ID: ");
+						id = sc.nextInt();
+						sc.nextLine();
 
-					if (albumLibrary.checkAvailability(id))
-					{
-						albumLibrary.rentAlbum(id);
-						System.out.println("Album rented!");
-					} else
-					{
-						if (albumLibrary.contains(id))
-							System.out.println("Album with ID: " + id + " is already rented.");
+						if (albumLibrary.checkAvailability(id))
+						{
+							albumLibrary.rentAlbum(id);
+							System.out.println("Album rented!");
+						}
 						else
-							System.out.println("Album with ID: " + id + " not found.");
-					}
-					break;
-				case "4":
-					System.out.println("Which album would you like to return? ID: ");
-					id = sc.nextInt();
-					sc.nextLine();
+						{
+							if (albumLibrary.contains(id))
+								System.out.println("Album with ID: " + id + " is already rented.");
+							else
+								System.out.println("Album with ID: " + id + " not found.");
+						}
+						break;
+					case "4":
+						System.out.println("Which album would you like to return? ID: ");
+						id = sc.nextInt();
+						sc.nextLine();
 
-					System.out.println("Number of days rented: ");
-					daysRented = sc.nextInt();
-					sc.nextLine();
+						System.out.println("Number of days rented: ");
+						daysRented = sc.nextInt();
+						sc.nextLine();
 
-					if (albumLibrary.contains(id) && !albumLibrary.checkAvailability(id))
-					{
-						albumLibrary.returnAlbum(id);
-						double cost = daysRented * albumLibrary.getDailyRent(id);
-						rentProfit = rentProfit + cost;
-						System.out.println("Song album returned! You paid: " + cost + " kr.");
-					}
-					else
-					{
-						if (albumLibrary.contains(id))
-							System.out.println("Album with ID: " + id + " is already returned.");
+						if (albumLibrary.contains(id) && !albumLibrary.checkAvailability(id))
+						{
+							albumLibrary.returnAlbum(id);
+							double cost = daysRented * albumLibrary.getDailyRent(id);
+							rentProfit = rentProfit + cost;
+							System.out.println("Song album returned! You paid: " + cost + " kr.");
+						}
 						else
-							System.out.println("Album with ID: " + id + " does not exist.");
-					}
-					break;
-				case"5":
-					customerLibrary.getPendingMembershipRequests();
-					System.out.println("Membership upgrade done.");
-					break;
-				default:
-					if(input.equals("6"))
-					{	break;  }
-					else
-					{	Message.printInvalidInput(); break; }
+						{
+							if (albumLibrary.contains(id))
+								System.out.println("Album with ID: " + id + " is already returned.");
+							else
+								System.out.println("Album with ID: " + id + " does not exist.");
+						}
+						break;
+					case "5":
+						activeCustomer.requestMembershipUpgrade();
+						System.out.println("Request for upgrade membership done.");
+						break;
+					default:
+						if (!input.equals("6"))
+						{
+							Message.printInvalidInput();
+						}
+						break;
+				}
 			}
-
 		}
+		else
+		{
+			Message.printInvalidPassword();
+		}
+	}
+
+	public void printRequestList()
+	{
+		for (Customer customer : customerLibrary.getPendingMembershipRequests())
+		{
+			System.out.println(customer.toString());
+			System.out.print("Accept (y/n): ");
+			String answer = sc.nextLine();
+			if (answer.equals("y"))
+				customer.upgrade();
+
+			customer.requestHandled();
+		}
+	}
+
+	public void addNewEmployee()
+	{
+		int id, birthYear;
+		double grossSalary;
+		String name, address;
+
+		Message.printCreateEmployee();
+
+		System.out.print("ID: ");
+		id = sc.nextInt();
+		sc.nextLine();            //Read next line to clear scanner buffer.
+
+		System.out.print("Name: ");
+		name = sc.nextLine();
+
+		System.out.print("Birth year: ");
+		birthYear = sc.nextInt();
+		sc.nextLine();            //Read next line to clear scanner buffer.
+
+		System.out.print("Address: ");
+		address = sc.nextLine();
+
+		System.out.print("Monthly gross salary: ");
+		grossSalary = sc.nextDouble();
+		sc.nextLine();            //Read next line to clear scanner buffer.
+
+		employeeLibrary.addEmployee(id, name, birthYear, address, grossSalary);
+	}
+
+	public void addCustomer()
+	{
+		int id;
+		String name;
+		String password;
+
+		Message.printCreateCustomer();
+
+		System.out.print("ID: ");
+		id = sc.nextInt();
+		sc.nextLine();
+
+		System.out.print("Name: ");
+		name = sc.nextLine();
+
+		System.out.print("Password: ");
+		password = sc.nextLine();
+
+		customerLibrary.addCustomer(id, name, password);
+	}
+
+	public void addNewGame()
+	{
+		int id;
+		String name, genre;
+		double dailyRent;
+
+		Message.printCreateGame();
+
+		System.out.print("ID: ");
+		id = sc.nextInt();
+		sc.nextLine();
+
+		System.out.print("Name: ");
+		name = sc.nextLine();
+
+		System.out.print("Genre: ");
+		genre = sc.nextLine();
+
+		System.out.print("Daily rent: ");
+		dailyRent = sc.nextDouble();
+		sc.nextLine();
+
+		gameLibrary.addGame(id, name, genre, dailyRent);
+	}
+
+	public void addNewSongAlbum()
+	{
+		int id;
+		String title;
+		String artist;
+		int releaseYear;
+		double rentPerDay;
+
+		Message.printCreateSongAlbum();
+
+		System.out.print("ID: ");
+		id = sc.nextInt();
+		sc.nextLine();
+
+		System.out.print("Title: ");
+		title = sc.nextLine();
+
+		System.out.print("Artist: ");
+		artist = sc.nextLine();
+
+		System.out.print("Released in year: ");
+		releaseYear = sc.nextInt();
+		sc.nextLine();
+
+		System.out.print("Daily rent: ");
+		rentPerDay = sc.nextDouble();
+		sc.nextLine();
+
+		albumLibrary.addAlbum(id, title, artist, releaseYear, rentPerDay);
+
 	}
 }
