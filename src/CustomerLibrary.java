@@ -25,11 +25,11 @@ public class CustomerLibrary
 	{
 		boolean foundCustomer = false;		//False until proven true
 
-		for(Customer c : customerList)		//For each Customer "c" in customerList
+		for(Customer customer : customerList)		//For each Customer "c" in customerList
 		{
-			if(c.getId() == idToRemove)		//If c's ID == idToRemove
+			if(customer.getId() == idToRemove)		//If c's ID == idToRemove
 			{
-				customerList.remove(c);		// Remove c from customerList
+				customerList.remove(customer);		// Remove c from customerList
 				foundCustomer = true;		//Customer found!
 				break;					    //No use in looking any more
 			}
@@ -41,11 +41,24 @@ public class CustomerLibrary
 		}
 	}
 
+	public ArrayList<Customer> getPendingMembershipRequests()
+	{
+		ArrayList<Customer> result = new ArrayList<>();
+
+		for (Customer customer : customerList)
+		{
+			if(customer.getHasRequestedMembership())
+				result.add(customer);
+		}
+
+		return result;
+	}
+
 	public void printConsole()
 	{
-		for(Customer c : customerList)				//For each  "c" in customerList
+		for(Customer customer : customerList)				//For each  "customer" in customerList
 		{
-			System.out.println(c.toString());		//Print the customer info
+			System.out.println(customer.toString());		//Print the customer info
 		}
 	}
 }

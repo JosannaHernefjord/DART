@@ -8,6 +8,10 @@ public class Employee
 	private int age;
 	private double grossSalary;
 	private int bonus;
+	private final int bonusLow = 4000;
+	private final int bonusMedium = 6000;
+	private final int bonusHigh = 7500;
+	private final double taxCut = 0.7;
 
 	//--------------CONSTRUCTOR---------
 	public Employee(int id, String name, int birthYear, String address, double grossSalary)
@@ -17,7 +21,6 @@ public class Employee
 		this.birthYear = birthYear;
 		this.address = address;
 		this.age = 2020 - birthYear;
-
 		this.grossSalary = grossSalary;
 
 	}
@@ -42,7 +45,7 @@ public class Employee
 			return "Monthly net salary: " + grossSalary + " - " + "Yearly net salary: " + (grossSalary*12+ bonus);
 		} else
 		{
-			return "Montlhy net salary: " + grossSalary * 0.7 + " - " + "Yearly net salary: " + ((grossSalary * 0.7)*12+ bonus) ;
+			return "Montlhy net salary: " + grossSalary * taxCut + " - " + "Yearly net salary: " + ((grossSalary * taxCut)*12+ bonus) ;
 		}
 	}
 
@@ -50,15 +53,15 @@ public class Employee
 	{
 		if (age < 22)
 		{
-			bonus = 4000;
+			bonus = bonusLow;
 			return "Employee will receive 4000SEK in bonus";
 		} else if (age >= 22 && age <= 30 )
 		{
-			bonus = 6000;
+			bonus = bonusMedium;
 			return "Employee will receive 6000SEK in bonus";
 		} else
 		{
-			bonus = 7500;
+			bonus = bonusHigh;
 			return "Employee will receive 7500SEK in bonus";
 		}
 	}

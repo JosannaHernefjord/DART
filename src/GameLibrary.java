@@ -16,19 +16,19 @@ public class GameLibrary
 	//--------------METHODS------------
 	public void addGame(int id, String title, String genre, double dailyRent)
 	{
-		Game g = new Game(id, title, genre, dailyRent);
-		gameList.add(g);
+		Game game = new Game(id, title, genre, dailyRent);
+		gameList.add(game);
 	}
 
 	public void removeGame(int idToRemove)
 	{
 		boolean foundGame = false;
 
-		for (Game g : gameList)
+		for (Game game : gameList)
 		{
-			if (idToRemove == g.getId())
+			if (idToRemove == game.getId())
 			{
-				gameList.remove(g);
+				gameList.remove(game);
 				foundGame = true;
 				break;
 			}
@@ -42,11 +42,11 @@ public class GameLibrary
 
 	public void rentGame(int id)
 	{
-		for(Game g : gameList)
+		for(Game game : gameList)
 		{
-			if(id == g.getId())
+			if(id == game.getId())
 			{
-				g.rentOut();
+				game.rentOut();
 				break;
 			}
 		}
@@ -54,11 +54,11 @@ public class GameLibrary
 
 	public void returnGame(int id)
 	{
-		for(Game g : gameList)
+		for(Game game : gameList)
 		{
-			if(id == g.getId())
+			if(id == game.getId())
 			{
-				g.returnGame();
+				game.returnGame();
 				break;
 			}
 		}
@@ -66,9 +66,9 @@ public class GameLibrary
 
 	public boolean contains(int id)
 	{
-		for(Game g : gameList)
+		for(Game game : gameList)
 		{
-			if(id == g.getId())
+			if(id == game.getId())
 			{
 				return true;
 			}
@@ -79,11 +79,11 @@ public class GameLibrary
 
 	public boolean checkAvailability(int id)
 	{
-		for(Game g : gameList)
+		for(Game game : gameList)
 		{
-			if(id == g.getId())
+			if(id == game.getId())
 			{
-				return g.getIsAvailable();
+				return game.getIsAvailable();
 			}
 		}
 
@@ -92,11 +92,11 @@ public class GameLibrary
 
 	public double getDailyRent(int id)
 	{
-		for(Game g : gameList)
+		for(Game game : gameList)
 		{
-			if(id == g.getId())
+			if(id == game.getId())
 			{
-				return g.getDailyRent();
+				return game.getDailyRent();
 			}
 		}
 
@@ -106,9 +106,9 @@ public class GameLibrary
 	//prints all games in list to console
 	public void printConsole()
 	{
-		for (Game g : gameList)
+		for (Game game : gameList)
 		{
-			System.out.println(g.toString());
+			System.out.println(game.toString());
 		}
 	}
 }

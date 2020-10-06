@@ -60,7 +60,7 @@ public class Controller
 
 		if (input.equals("admin1234"))
 		{
-			while (!input.equals("6"))
+			while (!input.equals("7"))
 			{
 				Message.printManagerScreen();
 				input = sc.nextLine();
@@ -92,13 +92,11 @@ public class Controller
 						employeeLibrary.printBonus(id);
 						break;
 					default:
-						Message.printInvalidInput();
+						input = "7";
 						break;
 				}
-			}
-
-		}
-		sc.close();
+			} Message.printInvalidInput();
+		}else Message.printInvalidPassword();
 	}
 
 	private void employeeRoutine()
@@ -108,7 +106,7 @@ public class Controller
 
 		if (input.equals("password123"))
 		{
-			while (!input.equals("7"))
+			while (!input.equals("10"))
 			{
 				Message.printEmployeeScreen();
 				input = sc.nextLine();
@@ -149,25 +147,28 @@ public class Controller
 						id = sc.nextInt();
 						sc.nextLine();
 						albumLibrary.removeAlbum(id);
+					case"9":
+						System.out.println("------MEMBERSHIP REQUESTS------");
+						employeeLibrary.printRequestList();
+						System.out.println("-------------------------------");
 					default:
-						Message.printInvalidPassword();
+						input = "10";
 						break;
 				}
-			}
-		}
-		sc.close();
+			} Message.printInvalidInput();
+		}else Message.printInvalidPassword();
 	}
 
 	private void customerRoutine()
 	{
 		String input = "";
 
-		while (!input.equals("3"))
+		while (!input.equals("6"))
 		{
 			Message.printCustomerScreen();
 			input = sc.nextLine();
 			int id;
-
+			int daysRented;
 			switch (input)
 			{
 				case "1":     // Rent a game
@@ -187,10 +188,9 @@ public class Controller
 						else
 							System.out.println("Game with ID: " + id + " does not exist.");
 					}
+					break;
 
-				case "2":   //Return a game
-				{
-					int daysRented;
+				case "2":   		//Return a game
 
 					System.out.println("Enter the following information: ");
 
@@ -215,20 +215,21 @@ public class Controller
 						else
 							System.out.println("Game with ID: " + id + " does not exist.");
 					}
-				}
+					break;
+
 				case "3":
-					System.out.println("-----------------SONG ALBUMS-----------------");
+					System.out.println("-----------------ALBUMS-----------------");
 					albumLibrary.printAllAlbums();
 					System.out.println("---------------------------------------------");
 
-					System.out.println("Which song album would you like to rent? ID: ");
+					System.out.println("Which album would you like to rent? ID: ");
 					id = sc.nextInt();
 					sc.nextLine();
 
 					if (albumLibrary.checkAvailability(id))
 					{
 						albumLibrary.rentAlbum(id);
-						System.out.println("Song album rented!");
+						System.out.println("Album rented!");
 					} else
 					{
 						if (albumLibrary.contains(id))
@@ -236,13 +237,14 @@ public class Controller
 						else
 							System.out.println("Album with ID: " + id + " not found.");
 					}
+					break;
 				case "4":
-					System.out.println("Which song album would you like to return? ID: ");
+					System.out.println("Which album would you like to return? ID: ");
 					id = sc.nextInt();
 					sc.nextLine();
 
 					System.out.println("Number of days rented: ");
-					int daysRented = sc.nextInt();
+					daysRented = sc.nextInt();
 					sc.nextLine();
 
 					if (albumLibrary.contains(id) && !albumLibrary.checkAvailability(id))
@@ -252,11 +254,23 @@ public class Controller
 						rentProfit = rentProfit + cost;
 						System.out.println("Song album returned! You paid: " + cost + " kr.");
 					}
-
+					else
+					{
+						if (albumLibrary.contains(id))
+							System.out.println("Album with ID: " + id + " is already returned.");
+						else
+							System.out.println("Album with ID: " + id + " does not exist.");
+					}
+					break;
+				case"5":
+					customerLibrary.getPendingMembershipRequests();
+					System.out.println("Membership upgrade done.");
+					break;
 				default:
-					Message.printInvalidInput();
+					input = "6";
+					break;
 			}
 
-		}
+		}Message.printInvalidInput();
 	}
 }
