@@ -60,7 +60,7 @@ public class Controller
 
 		if (input.equals("admin1234"))
 		{
-			while (!input.equals("7"))
+			while (!input.equals("6"))
 			{
 				Message.printManagerScreen();
 				input = sc.nextLine();
@@ -92,10 +92,12 @@ public class Controller
 						employeeLibrary.printBonus(id);
 						break;
 					default:
-						input = "7";
-						break;
+						if(input.equals("6"))
+						{	break;  }
+						else
+						{	Message.printInvalidInput(); break; }
 				}
-			} Message.printInvalidInput();
+			}
 		}else Message.printInvalidPassword();
 	}
 
@@ -152,10 +154,12 @@ public class Controller
 						employeeLibrary.printRequestList();
 						System.out.println("-------------------------------");
 					default:
-						input = "10";
-						break;
+						if(input.equals("10"))
+						{	break;  }
+						else
+						{	Message.printInvalidInput(); break; }
 				}
-			} Message.printInvalidInput();
+			}
 		}else Message.printInvalidPassword();
 	}
 
@@ -267,10 +271,12 @@ public class Controller
 					System.out.println("Membership upgrade done.");
 					break;
 				default:
-					input = "6";
-					break;
+					if(input.equals("6"))
+					{	break;  }
+					else
+					{	Message.printInvalidInput(); break; }
 			}
 
-		}Message.printInvalidInput();
+		}
 	}
 }
