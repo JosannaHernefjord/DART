@@ -23,6 +23,7 @@ public class Controller
 	{
 		String Input = "";
 
+
 		while (!Input.equals("X"))
 		{
 			Message.printMainScreen();
@@ -200,18 +201,7 @@ public class Controller
 						id = sc.nextInt();
 						sc.nextLine();
 
-						if (gameLibrary.checkAvailability(id))
-						{
-							gameLibrary.rentGame(id);
-							System.out.println("Game rented!");
-						}
-						else
-						{
-							if (gameLibrary.contains(id))
-								System.out.println("Game with ID: " + id + " is not available.");
-							else
-								System.out.println("Game with ID: " + id + " does not exist.");
-						}
+						rentGame(id,activeCustomer);
 						break;
 
 					case "2":        //Return a game
@@ -226,23 +216,10 @@ public class Controller
 						daysRented = sc.nextInt();
 						sc.nextLine();
 
-						if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id))
-						{
-							gameLibrary.returnGame(id);
-							double cost = daysRented * gameLibrary.getDailyRent(id);
-							rentProfit = rentProfit + cost;
-							System.out.println("Game returned! You paid: " + cost + " kr.");
-						}
-						else
-						{
-							if (gameLibrary.contains(id))
-								System.out.println("Game with ID: " + id + " is already returned.");
-							else
-								System.out.println("Game with ID: " + id + " does not exist.");
-						}
+						returnGame(id,daysRented,activeCustomer);
 						break;
 
-					case "3":
+					case "3":			//rent an album
 						System.out.println("-----------------ALBUMS-----------------");
 						albumLibrary.printAllAlbums();
 						System.out.println("---------------------------------------------");
@@ -251,20 +228,9 @@ public class Controller
 						id = sc.nextInt();
 						sc.nextLine();
 
-						if (albumLibrary.checkAvailability(id))
-						{
-							albumLibrary.rentAlbum(id);
-							System.out.println("Album rented!");
-						}
-						else
-						{
-							if (albumLibrary.contains(id))
-								System.out.println("Album with ID: " + id + " is already rented.");
-							else
-								System.out.println("Album with ID: " + id + " not found.");
-						}
+						rentAlbum(id,activeCustomer);
 						break;
-					case "4":
+					case "4":			// return an album
 						System.out.println("Which album would you like to return? ID: ");
 						id = sc.nextInt();
 						sc.nextLine();
@@ -273,20 +239,7 @@ public class Controller
 						daysRented = sc.nextInt();
 						sc.nextLine();
 
-						if (albumLibrary.contains(id) && !albumLibrary.checkAvailability(id))
-						{
-							albumLibrary.returnAlbum(id);
-							double cost = daysRented * albumLibrary.getDailyRent(id);
-							rentProfit = rentProfit + cost;
-							System.out.println("Song album returned! You paid: " + cost + " kr.");
-						}
-						else
-						{
-							if (albumLibrary.contains(id))
-								System.out.println("Album with ID: " + id + " is already returned.");
-							else
-								System.out.println("Album with ID: " + id + " does not exist.");
-						}
+						returnAlbum(id,daysRented,activeCustomer);
 						break;
 					case "5":
 						activeCustomer.requestMembershipUpgrade();
@@ -427,4 +380,111 @@ public class Controller
 		albumLibrary.addAlbum(id, title, artist, releaseYear, rentPerDay);
 
 	}
+
+	public void rentGame(int id, Customer activeCustomer)
+	{
+
+		if (gameLibrary.checkAvailability(id))
+		{
+			if(activeCustomer.getNumberObjectsRented() < activeCustomer.rentLimit())
+			{
+				gameLibrary.rentGame(id);
+				activeCustomer.rentedOneItem();
+				System.out.println("Game rented!");
+			}
+			else
+			{
+				System.out.println("You've reached your rent limit.");
+			}
+		}
+		else
+		{
+			if (gameLibrary.contains(id))
+				System.out.println("Game with ID: " + id + " is not available.");
+			else
+				System.out.println("Game with ID: " + id + " does not exist.");
+		}
+	}
+
+	public void returnGame(int id, int daysRented, Customer activeCustomer)
+	{
+
+		if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id))
+		{
+			gameLibrary.returnGame(id);
+			activeCustomer.returnedOneItem();
+
+			if(activeCustomer.getsForFree())
+			{
+				System.out.println("Game returned for free!");
+			}
+			else
+			{
+				activeCustomer.increaseCredits();
+				double cost = daysRented * gameLibrary.getDailyRent(id) * activeCustomer.discount();
+				rentProfit = rentProfit + cost;
+				System.out.println("Game returned! You paid: " + cost + " kr.");
+			}
+		}
+		else
+		{
+			if (gameLibrary.contains(id))
+				System.out.println("Game with ID: " + id + " is already returned.");
+			else
+				System.out.println("Game with ID: " + id + " does not exist.");
+		}
+	}
+	public void rentAlbum(int id, Customer activeCustomer)
+	{
+		if (albumLibrary.checkAvailability(id))
+		{
+			if(activeCustomer.getNumberObjectsRented() < activeCustomer.rentLimit())
+			{
+				albumLibrary.rentAlbum(id);
+				activeCustomer.rentedOneItem();
+				System.out.println("Album rented!");
+			}
+			else
+			{
+				System.out.println("You've reached your rent limit.");
+			}
+		}
+		else
+		{
+			if (albumLibrary.contains(id))
+				System.out.println("Album with ID: " + id + " is already rented.");
+			else
+				System.out.println("Album with ID: " + id + " not found.");
+		}
+	}
+
+	public void returnAlbum(int id, int daysRented, Customer activeCustomer)
+	{
+
+		if (albumLibrary.contains(id) && !albumLibrary.checkAvailability(id))
+		{
+			albumLibrary.returnAlbum(id);
+			activeCustomer.returnedOneItem();
+
+			if(activeCustomer.getsForFree())
+			{
+				System.out.println("Game returned for free!");
+			}
+			else
+			{
+				activeCustomer.increaseCredits();
+				double cost = daysRented * albumLibrary.getDailyRent(id) * activeCustomer.discount();
+				rentProfit = rentProfit + cost;
+				System.out.println("Song album returned! You paid: " + cost + " kr.");
+			}
+		}
+		else
+		{
+			if (albumLibrary.contains(id))
+				System.out.println("Album with ID: " + id + " is already returned.");
+			else
+				System.out.println("Album with ID: " + id + " does not exist.");
+		}
+	}
+
 }

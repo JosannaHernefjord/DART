@@ -5,6 +5,8 @@ public class Customer
 	private String name;
 	private String membership;
 	private String password;
+	private int credits;
+	private int numberObjectsRented;
 	private boolean hasRequestedMembership;
 	public final String notMember = "Not a member";
 	public final String silver = "Silver";
@@ -20,6 +22,8 @@ public class Customer
 		this.membership = "Not a member";
 		this.hasRequestedMembership = false;
 		this.password = password;
+		this.credits = 0;
+		this.numberObjectsRented = 0;
 	}
 
 	//--------------METHODS------------
@@ -47,6 +51,79 @@ public class Customer
 	{
 		if (!membership.equals(platinum))
 			hasRequestedMembership = true;
+	}
+
+	public int getNumberObjectsRented()
+	{
+		return numberObjectsRented;
+	}
+
+	public void rentedOneItem()
+	{
+		this.numberObjectsRented++;
+	}
+
+	public void returnedOneItem()
+	{
+		this.numberObjectsRented--;
+	}
+
+	public int rentLimit()
+	{
+		switch(membership)
+		{
+			case silver:
+				return 3;
+			case gold:
+				return 5;
+			case platinum:
+				return 7;
+			default:
+				return 1;
+		}
+	}
+
+	public void increaseCredits()
+	{
+		switch (membership)
+		{
+			case silver:
+				credits +=1;
+				break;
+			case gold:
+				credits +=2;
+			case platinum:
+				credits +=3;
+
+		}
+	}
+
+	public boolean getsForFree()
+	{
+		if(credits >=5)
+		{
+			credits = credits - 5;
+			return true;
+		}
+		else
+		{
+			return false;
+		}
+	}
+
+	public double discount()
+	{
+		switch(membership)
+		{
+			case silver:
+				return 0.9;
+			case gold:
+				return 0.85;
+			case platinum:
+				return 0.75;
+			default:
+				return 1.0;
+		}
 	}
 
 	public void upgrade()
