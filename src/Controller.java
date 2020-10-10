@@ -143,7 +143,7 @@ public class Controller
 						break;
 					case "6":
 						System.out.println("-----------------GAMES-----------------");
-						gameLibrary.printConsole();
+						gameLibrary.printAllGames();
 						System.out.println("---------------------------------------");
 						break;
 					case "7":
@@ -223,7 +223,14 @@ public class Controller
 					case "7":
 						sendMessage(activeCustomer.getId());
 						break;
-
+					case "8":
+						System.out.println("-------All games by rating-------");
+						gameLibrary.printAllGames();
+						System.out.println("---------------------------------");
+					case"9":
+						System.out.println("-------All games by rating-------");
+						albumLibrary.printAllAlbums();
+						System.out.println("---------------------------------");
 					default:
 						if (!input.equals("8"))
 						{
@@ -417,6 +424,34 @@ public class Controller
 				rentProfit = rentProfit + cost;
 				System.out.println("Game returned! You paid: " + cost + " kr.");
 			}
+
+			System.out.println("Would you like to leave a rating? (y/n)");
+			String input = sc.nextLine();
+
+			if(input.equals("y"))
+			{
+				System.out.println("Print a review from 0 to 5: ");
+				int rating = sc.nextInt(); sc.nextLine();
+
+				while(rating < 0 || rating > 5)
+				{
+					System.out.println("Invalid input, try again (0-5). ");
+					rating = sc.nextInt(); sc.nextLine();
+				}
+
+				System.out.println("Would you like to leave a written review? (y/n)");
+				input = sc.nextLine();
+
+				String review = "";
+
+				if(input.equals("y"))
+				{
+					System.out.println("Write your review: ");
+					review = sc.nextLine();
+				}
+
+				gameLibrary.addReview(id, new Review(rating,review));
+			}
 		}
 		else
 		{
@@ -483,6 +518,34 @@ public class Controller
 				double cost = daysRented * albumLibrary.getDailyRent(id) * activeCustomer.discount();
 				rentProfit = rentProfit + cost;
 				System.out.println("Song album returned! You paid: " + cost + " kr.");
+			}
+
+			System.out.println("Would you like to leave a rating? (y/n)");
+			String input = sc.nextLine();
+
+			if(input.equals("y"))
+			{
+				System.out.println("Print a review from 0 to 5: ");
+				int rating = sc.nextInt(); sc.nextLine();
+
+				while(rating < 0 || rating > 5)
+				{
+					System.out.println("Invalid input, try again (0-5). ");
+					rating = sc.nextInt(); sc.nextLine();
+				}
+
+				System.out.println("Would you like to leave a written review? (y/n)");
+				input = sc.nextLine();
+
+				String review = "";
+
+				if(input.equals("y"))
+				{
+					System.out.println("Write your review: ");
+					review = sc.nextLine();
+				}
+
+				albumLibrary.addReview(id, new Review(rating,review));
 			}
 		}
 		else

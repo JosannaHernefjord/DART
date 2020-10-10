@@ -1,6 +1,9 @@
-public class Game
+import java.util.ArrayList;
+
+public class Game implements Comparable<Game>
 {
 	//---------INSTANCE VARIABLES-----------
+	private ArrayList<Review> reviews;
 	private int id;
 	private String title;
 	private String genre;
@@ -10,6 +13,7 @@ public class Game
 	//Constructor
 	public Game(int id, String title, String genre, double dailyRent)
 	{
+		this.reviews = new ArrayList<>();
 		this.id = id;
 		this.title = title;
 		this.genre = genre;
@@ -44,6 +48,41 @@ public class Game
 		return isAvailable;
 	}
 
+	public void addReview(Review review)
+	{
+		reviews.add(review);
+	}
+
+	public double getAverageRating()
+	{
+		if(reviews.isEmpty())
+		{
+			return 0;
+		}
+		else
+		{
+			int accumulatedRatings = 0;
+
+			for(Review review : reviews)
+			{
+				accumulatedRatings += review.getRating();
+			}
+			return (double) accumulatedRatings / (double) reviews.size();
+		}
+	}
+
+	public int compareTo(Game gameToCompare)
+	{
+		if(gameToCompare.getAverageRating() > gameToCompare.getAverageRating())
+		{
+			return 1;
+		}
+		else
+		{
+			return -1;
+		}
+	}
+
 	public String toString()
 	{
 		String temp = "unavailable";
@@ -51,7 +90,7 @@ public class Game
 		if (isAvailable)
 			temp = "available";
 
-		return id + ": " + title + " (" + genre + "). " + dailyRent + ". Status: " + temp;
+		return id + ": " + title + " (" + genre + "). " + dailyRent + "Average rating: " + getAverageRating() + ". Status: " + temp;
 	}
 
 }

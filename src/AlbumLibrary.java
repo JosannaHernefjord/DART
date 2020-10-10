@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class AlbumLibrary
@@ -51,6 +52,7 @@ public class AlbumLibrary
 
 	public void printAllAlbums()    // view all albums
 	{
+		Collections.sort(albumList);
 		for (Album album : albumList)
 		{
 			System.out.println(album.toString());
@@ -105,6 +107,15 @@ public class AlbumLibrary
 			}
 		}
 		return 0;
+	}
+
+	public void addReview(int id, Review review)
+	{
+		for (Album album : albumList)
+		{
+			if(album.getId() == id)
+				album.addReview(review);
+		}
 	}
 
 }

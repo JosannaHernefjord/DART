@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 
 public class GameLibrary
@@ -18,6 +19,15 @@ public class GameLibrary
 	{
 		Game game = new Game(id, title, genre, dailyRent);
 		gameList.add(game);
+	}
+
+	public void addReview(int id, Review review)
+	{
+		for (Game game : gameList)
+		{
+			if(game.getId() == id)
+				game.addReview(review);
+		}
 	}
 
 	public void removeGame(int idToRemove)
@@ -104,8 +114,9 @@ public class GameLibrary
 	}
 
 	//prints all games in list to console
-	public void printConsole()
+	public void printAllGames()
 	{
+		Collections.sort(gameList);
 		for (Game game : gameList)
 		{
 			System.out.println(game.toString());
