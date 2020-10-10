@@ -23,10 +23,11 @@ public class Controller
 	{
 		String Input = "";
 
+		testSetup();
 
 		while (!Input.equals("X"))
 		{
-			Message.printMainScreen();
+			Print.printMainScreen();
 			Input = sc.nextLine();
 			Input = Input.toUpperCase();    //To make small letters to capital letters
 
@@ -44,7 +45,7 @@ public class Controller
 				case "X":
 					break;
 				default:
-					Message.printInvalidInput();
+					Print.printInvalidInput();
 					break;
 			}
 		}
@@ -54,14 +55,14 @@ public class Controller
 
 	private void managerRoutine()
 	{
-		Message.printPasswordPrompt();
+		Print.printPasswordPrompt();
 		String input = sc.nextLine();
 
 		if (input.equals("admin1234"))
 		{
 			while (!input.equals("6"))
 			{
-				Message.printManagerScreen();
+				Print.printManagerScreen();
 				input = sc.nextLine();
 				int id;
 				switch (input)
@@ -75,19 +76,19 @@ public class Controller
 						System.out.println("---------------------------------------");
 						break;
 					case "3":
-						Message.printRemoveEmployee();
+						Print.printRemoveEmployee();
 						id = sc.nextInt();
 						sc.nextLine();
 						employeeLibrary.removeEmployee(id);
 						break;
 					case "4":
-						Message.printViewEmployeeNetSalary();
+						Print.printViewEmployeeNetSalary();
 						id = sc.nextInt();
 						sc.nextLine();
 						employeeLibrary.printSalary(id);
 						break;
 					case "5":
-						Message.printEmployeeBonus();
+						Print.printEmployeeBonus();
 						id = sc.nextInt();
 						sc.nextLine();
 						employeeLibrary.printBonus(id);
@@ -95,25 +96,25 @@ public class Controller
 					default:
 						if (!input.equals("6"))
 						{
-							Message.printInvalidInput();
+							Print.printInvalidInput();
 						}
 						break;
 				}
 			}
 		}
-		else Message.printInvalidPassword();
+		else Print.printInvalidPassword();
 	}
 
 	private void employeeRoutine()
 	{
-		Message.printPasswordPrompt();
+		Print.printPasswordPrompt();
 		String input = sc.nextLine();
 
 		if (input.equals("password123"))
 		{
 			while (!input.equals("10"))
 			{
-				Message.printEmployeeScreen();
+				Print.printEmployeeScreen();
 				input = sc.nextLine();
 				int id;
 
@@ -123,7 +124,7 @@ public class Controller
 						addNewGame();
 						break;
 					case "2":
-						Message.printRemoveGame();
+						Print.printRemoveGame();
 						id = sc.nextInt();
 						sc.nextLine();
 						gameLibrary.removeGame(id);
@@ -132,7 +133,7 @@ public class Controller
 						addCustomer();
 						break;
 					case "4":
-						Message.printRemoveCustomer();
+						Print.printRemoveCustomer();
 						id = sc.nextInt();
 						sc.nextLine();
 						customerLibrary.removeCustomer(id);
@@ -149,7 +150,7 @@ public class Controller
 						addNewSongAlbum();
 						break;
 					case "8":
-						Message.printRemoveSongAlbum();
+						Print.printRemoveSongAlbum();
 						id = sc.nextInt();
 						sc.nextLine();
 						albumLibrary.removeAlbum(id);
@@ -163,7 +164,7 @@ public class Controller
 					{
 						if (!input.equals("10"))
 						{
-							Message.printInvalidInput();
+							Print.printInvalidInput();
 						}
 						break;
 					}
@@ -171,7 +172,7 @@ public class Controller
 			}
 		}
 		else
-			Message.printInvalidPassword();
+			Print.printInvalidPassword();
 	}
 
 	private void customerRoutine()
@@ -187,68 +188,46 @@ public class Controller
 		String password = sc.nextLine();
 		if (activeCustomer.checkPassword(password))
 		{
-			while (!input.equals("6"))
+			while (!input.equals("8"))
 			{
-				Message.printCustomerScreen();
+				Print.printCustomerScreen();
 				input = sc.nextLine();
 				int id;
 				int daysRented;
 				switch (input)
 				{
 					case "1":     // Rent a game
-
-						System.out.println("Write the ID of the game you want to rent: ");
-						id = sc.nextInt();
-						sc.nextLine();
-
-						rentGame(id,activeCustomer);
+						rentGame(activeCustomer);
 						break;
 
 					case "2":        //Return a game
-
-						System.out.println("Enter the following information: ");
-
-						System.out.print("ID of game to return: ");
-						id = sc.nextInt();
-						sc.nextLine();
-
-						System.out.print("Number of days rented: ");
-						daysRented = sc.nextInt();
-						sc.nextLine();
-
-						returnGame(id,daysRented,activeCustomer);
+						returnGame(activeCustomer);
 						break;
 
 					case "3":			//rent an album
-						System.out.println("-----------------ALBUMS-----------------");
-						albumLibrary.printAllAlbums();
-						System.out.println("---------------------------------------------");
-
-						System.out.println("Which album would you like to rent? ID: ");
-						id = sc.nextInt();
-						sc.nextLine();
-
-						rentAlbum(id,activeCustomer);
+						rentAlbum(activeCustomer);
 						break;
+
 					case "4":			// return an album
-						System.out.println("Which album would you like to return? ID: ");
-						id = sc.nextInt();
-						sc.nextLine();
-
-						System.out.println("Number of days rented: ");
-						daysRented = sc.nextInt();
-						sc.nextLine();
-
-						returnAlbum(id,daysRented,activeCustomer);
+						returnAlbum(activeCustomer);
 						break;
+
 					case "5":
 						activeCustomer.requestMembershipUpgrade();
 						System.out.println("Request for upgrade membership done.");
 						break;
+					case "6":
+						activeCustomer.printMessages();
+						break;
+
+					case "7":
+						sendMessage(activeCustomer.getId());
+						break;
+
 					default:
-						if (!input.equals("6"))
+						if (!input.equals("8"))
 						{
-							Message.printInvalidInput();
+							Print.printInvalidInput();
 						}
 						break;
 				}
@@ -256,7 +235,7 @@ public class Controller
 		}
 		else
 		{
-			Message.printInvalidPassword();
+			Print.printInvalidPassword();
 		}
 	}
 
@@ -280,7 +259,7 @@ public class Controller
 		double grossSalary;
 		String name, address;
 
-		Message.printCreateEmployee();
+		Print.printCreateEmployee();
 
 		System.out.print("ID: ");
 		id = sc.nextInt();
@@ -309,7 +288,7 @@ public class Controller
 		String name;
 		String password;
 
-		Message.printCreateCustomer();
+		Print.printCreateCustomer();
 
 		System.out.print("ID: ");
 		id = sc.nextInt();
@@ -330,7 +309,7 @@ public class Controller
 		String name, genre;
 		double dailyRent;
 
-		Message.printCreateGame();
+		Print.printCreateGame();
 
 		System.out.print("ID: ");
 		id = sc.nextInt();
@@ -357,7 +336,7 @@ public class Controller
 		int releaseYear;
 		double rentPerDay;
 
-		Message.printCreateSongAlbum();
+		Print.printCreateSongAlbum();
 
 		System.out.print("ID: ");
 		id = sc.nextInt();
@@ -381,8 +360,11 @@ public class Controller
 
 	}
 
-	public void rentGame(int id, Customer activeCustomer)
+	public void rentGame(Customer activeCustomer)
 	{
+		System.out.println("Write the ID of the game you want to rent: ");
+		int id = sc.nextInt();
+		sc.nextLine();
 
 		if (gameLibrary.checkAvailability(id))
 		{
@@ -406,8 +388,18 @@ public class Controller
 		}
 	}
 
-	public void returnGame(int id, int daysRented, Customer activeCustomer)
+	public void returnGame(Customer activeCustomer)
 	{
+
+		System.out.println("Enter the following information: ");
+
+		System.out.print("ID of game to return: ");
+		int id = sc.nextInt();
+		sc.nextLine();
+
+		System.out.print("Number of days rented: ");
+		int daysRented = sc.nextInt();
+		sc.nextLine();
 
 		if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id))
 		{
@@ -434,8 +426,16 @@ public class Controller
 				System.out.println("Game with ID: " + id + " does not exist.");
 		}
 	}
-	public void rentAlbum(int id, Customer activeCustomer)
+	public void rentAlbum(Customer activeCustomer)
 	{
+		System.out.println("-----------------ALBUMS-----------------");
+		albumLibrary.printAllAlbums();
+		System.out.println("---------------------------------------------");
+
+		System.out.println("Which album would you like to rent? ID: ");
+		int id = sc.nextInt();
+		sc.nextLine();
+
 		if (albumLibrary.checkAvailability(id))
 		{
 			if(activeCustomer.getNumberObjectsRented() < activeCustomer.rentLimit())
@@ -458,8 +458,15 @@ public class Controller
 		}
 	}
 
-	public void returnAlbum(int id, int daysRented, Customer activeCustomer)
+	public void returnAlbum(Customer activeCustomer)
 	{
+		System.out.println("Which album would you like to return? ID: ");
+		int id = sc.nextInt();
+		sc.nextLine();
+
+		System.out.println("Number of days rented: ");
+		int daysRented = sc.nextInt();
+		sc.nextLine();
 
 		if (albumLibrary.contains(id) && !albumLibrary.checkAvailability(id))
 		{
@@ -487,4 +494,33 @@ public class Controller
 		}
 	}
 
+	private void sendMessage(int senderId)
+	{
+		System.out.println("Write recipient ID: ");
+		int recipient = sc.nextInt(); sc.nextLine();
+
+		if(customerLibrary.contains(recipient))
+		{
+			System.out.println("Write your message: ");
+			String message = sc.nextLine();
+			customerLibrary.getCustomer(recipient).addMessage(new Message(senderId, message));
+		}
+		else
+		{
+			System.out.println("Customer not found.");
+		}
+	}
+
+	private void testSetup()
+	{
+		customerLibrary.addCustomer(1, "Adam", "123");
+		customerLibrary.addCustomer(2, "Bob", "123");
+		gameLibrary.addGame(1, "Destiny 2", "FPS", 20);
+		gameLibrary.addGame(2, "CS:GO", "FPS", 15);
+		gameLibrary.addGame(3, "WOW", "RPG", 10);
+		employeeLibrary.addEmployee(1, "Carl", 1992, "Java Street", 250000);
+		albumLibrary.addAlbum(1, "Top hits", "Various", 2020, 5);
+		albumLibrary.addAlbum(2, "Mozart", "Wolfgang Amadeus Mozart", 1779, 10);
+		albumLibrary.addAlbum(3, "Rap God", "Eminem", 2010, 8);
+	}
 }

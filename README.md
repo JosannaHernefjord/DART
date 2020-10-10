@@ -8,7 +8,7 @@ Application: Contains the main method and is responsible for initializing the co
 
 Controller: Manages input and output and directs program flow. Also contain all databases (Library classes).
 
-Message: Collects all long messages in one place to make the controller more readable.
+Print: Collects all long messages in one place to make the controller more readable.
 
 GameLibrary/EmployeeLibrary/CustomerLibrary: Maintains the databases of Games, Employees, and Customers.
 

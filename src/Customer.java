@@ -1,6 +1,9 @@
+import java.util.ArrayList;
+
 public class Customer
 {
 	//-----INSTANCE VARIABLES----
+	private ArrayList<Message> inbox;
 	private int id;
 	private String name;
 	private String membership;
@@ -17,6 +20,7 @@ public class Customer
 	//--------------CONSTRUCTOR---------
 	public Customer(int id, String name, String password)
 	{
+		this.inbox = new ArrayList<>();
 		this.id = id;
 		this.name = name;
 		this.membership = "Not a member";
@@ -139,6 +143,27 @@ public class Customer
 		else
 		{
 			membership = platinum;
+		}
+	}
+
+	public void addMessage(Message message)
+	{
+		inbox.add(message);
+	}
+
+	public void printMessages()
+	{
+		System.out.println("-------------UNREAD MESSAGES------------");
+		if(!inbox.isEmpty())
+		{
+			for(Message message : inbox)
+			{
+				if(!message.getIsRead())
+				{
+					System.out.println(message.toString());
+					message.viewedMessage();
+				}
+			}
 		}
 	}
 

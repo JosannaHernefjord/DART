@@ -72,4 +72,17 @@ public class CustomerLibrary
 			System.out.println(customer.toString());        //Print the customer info
 		}
 	}
+
+	public boolean contains(int id)
+	{
+		for (Customer customer : customerList)
+		{
+			if (id == customer.getId())
+			{
+				return true;
+			}
+		}
+
+		return false;
+	}
 }
