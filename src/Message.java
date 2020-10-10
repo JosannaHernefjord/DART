@@ -25,6 +25,6 @@ public class Message
 
 	public String toString()
 	{
-		return "From: " + senderId + " " + message;
+		return "From " + senderId + ":\n" + message;
 	}
 }

@@ -515,6 +515,7 @@ public class Controller
 	{
 		customerLibrary.addCustomer(1, "Adam", "123");
 		customerLibrary.addCustomer(2, "Bob", "123");
+		customerLibrary.addCustomer(3, "Linda", "123");
 		gameLibrary.addGame(1, "Destiny 2", "FPS", 20);
 		gameLibrary.addGame(2, "CS:GO", "FPS", 15);
 		gameLibrary.addGame(3, "WOW", "RPG", 10);

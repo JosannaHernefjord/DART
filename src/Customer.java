@@ -165,6 +165,7 @@ public class Customer
 				}
 			}
 		}
+		System.out.println("----------------------------------------");
 	}
 
 	public String toString()
