@@ -14,15 +14,20 @@ public class Album extends Item implements Comparable<Album>
 		this.isAvailable = true;
 	}
 
+	public int getReleaseYear()
+	{
+		return releaseYear;
+	}
+
 	public int compareTo(Album albumToCompare)
 	{
-		if(albumToCompare.getAverageRating() > albumToCompare.getAverageRating())
+		if(albumToCompare.getAverageRating() < albumToCompare.getAverageRating())
 		{
-			return 1;
+			return -1;
 		}
 		else
 		{
-			return -1;
+			return 1;
 		}
 	}
 

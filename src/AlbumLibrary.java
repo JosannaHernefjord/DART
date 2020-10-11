@@ -118,6 +118,16 @@ public class AlbumLibrary
 		}
 	}
 
+	public void printByYear(int year)
+	{
+		for (Album album : albumList) {
+			if(year == (album.getReleaseYear()))
+			{
+				System.out.println(album.toString());
+			}
+		}
+	}
+
 	public void printAlbumsHistory()
 	{
 		for (Album album : albumList)

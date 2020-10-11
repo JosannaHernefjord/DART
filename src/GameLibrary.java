@@ -123,6 +123,16 @@ public class GameLibrary
 		}
 	}
 
+	public void printByGenre(String genre)
+	{
+		for (Game game : gameList) {
+			if(genre.equals(game.getGenre()))
+			{
+				System.out.println(game.toString());
+			}
+		}
+	}
+
 	public void printGamesHistory()
 	{
 		for (Game game : gameList)

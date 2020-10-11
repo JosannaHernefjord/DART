@@ -21,15 +21,20 @@ public class Game extends Item implements Comparable<Game>
 		this.isAvailable = true;
 	}
 
+	public String getGenre()
+	{
+		return genre;
+	}
+
 	public int compareTo(Game gameToCompare)
 	{
-		if(gameToCompare.getAverageRating() > gameToCompare.getAverageRating())
+		if(gameToCompare.getAverageRating() < gameToCompare.getAverageRating())
 		{
-			return 1;
+			return -1;
 		}
 		else
 		{
-			return -1;
+			return 1;
 		}
 	}
 
