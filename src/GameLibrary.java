@@ -17,15 +17,21 @@ public class GameLibrary
 	//--------------METHODS------------
 	public void addGame(int id, String title, String genre, double dailyRent)
 	{
-		Game game = new Game(id, title, genre, dailyRent);
-		gameList.add(game);
+		if (!contains(id))
+
+		{
+			Game game = new Game(id, title, genre, dailyRent);
+			gameList.add(game);
+		}
+		else
+			System.out.println("Game with ID: " + id + " already exist.");
 	}
 
 	public void addReview(int id, Review review)
 	{
 		for (Game game : gameList)
 		{
-			if(game.getId() == id)
+			if (game.getId() == id)
 				game.addReview(review);
 		}
 	}
@@ -125,8 +131,9 @@ public class GameLibrary
 
 	public void printByGenre(String genre)
 	{
-		for (Game game : gameList) {
-			if(genre.equals(game.getGenre()))
+		for (Game game : gameList)
+		{
+			if (genre.equals(game.getGenre()))
 			{
 				System.out.println(game.toString());
 			}
@@ -137,7 +144,7 @@ public class GameLibrary
 	{
 		for (Game game : gameList)
 		{
-			for(Review review : game.getReviews())
+			for (Review review : game.getReviews())
 			{
 				System.out.println(review.toString());
 			}

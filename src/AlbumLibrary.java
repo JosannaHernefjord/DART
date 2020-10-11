@@ -14,8 +14,13 @@ public class AlbumLibrary
 
 	public void addAlbum(int id, String title, String artist, int releaseYear, double rentPerDay)
 	{
-		Album album = new Album(id, title, artist, releaseYear, rentPerDay);
-		albumList.add(album);
+		if(!contains(id))
+		{
+			Album album = new Album(id, title, artist, releaseYear, rentPerDay);
+			albumList.add(album);
+		}
+		else
+			System.out.println("Album with ID: " + id + " already exist.");
 	}
 
 	public void removeAlbum(int idToRemove)
