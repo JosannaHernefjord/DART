@@ -38,6 +38,11 @@ public class Game implements Comparable<Game>
 		return id;
 	}
 
+	public ArrayList<Review> getReviews()
+	{
+		return reviews;
+	}
+
 	public double getDailyRent()
 	{
 		return dailyRent;

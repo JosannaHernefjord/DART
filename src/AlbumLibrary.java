@@ -118,4 +118,15 @@ public class AlbumLibrary
 		}
 	}
 
+	public void printAlbumsHistory()
+	{
+		for (Album album : albumList)
+		{
+			for(Review review : album.getReviews())
+			{
+				review.toString();
+			}
+		}
+	}
+
 }

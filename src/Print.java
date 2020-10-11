@@ -3,7 +3,7 @@ public class Print
 	public static void printManagerScreen()
 	{
 		System.out.println("Manager Screen - Type one of the options below:");
-		System.out.println("1. Add an employee \n2. View all employees \n3. Remove employee \n4. View employees net salary \n5. Give out bonus to employees \n6. Return to Main Menu");
+		System.out.println("1. Add an employee \n2. View all employees \n3. Remove employee \n4. View employees net salary \n5. Give out bonus to employees \n6. Print game rent history \n7. Print album rent history \n8. Return to Main Menu");
 	}
 
 	public static void printEmployeeScreen()

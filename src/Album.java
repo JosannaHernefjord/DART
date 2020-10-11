@@ -42,6 +42,11 @@ public class Album implements Comparable<Album>
 		return isAvailable;
 	}
 
+	public ArrayList<Review> getReviews()
+	{
+		return reviews;
+	}
+
 	public void addReview(Review review)
 	{
 		reviews.add(review);

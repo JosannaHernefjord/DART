@@ -122,5 +122,16 @@ public class GameLibrary
 			System.out.println(game.toString());
 		}
 	}
+
+	public void printGamesHistory()
+	{
+		for (Game game : gameList)
+		{
+			for(Review review : game.getReviews())
+			{
+				review.toString();
+			}
+		}
+	}
 }
 

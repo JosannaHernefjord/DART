@@ -60,7 +60,7 @@ public class Controller
 
 		if (input.equals("admin1234"))
 		{
-			while (!input.equals("6"))
+			while (!input.equals("8"))
 			{
 				Print.printManagerScreen();
 				input = sc.nextLine();
@@ -93,8 +93,14 @@ public class Controller
 						sc.nextLine();
 						employeeLibrary.printBonus(id);
 						break;
+					case "6":
+						gameLibrary.printGamesHistory();
+						break;
+					case "7":
+						albumLibrary.printAlbumsHistory();
+						break;
 					default:
-						if (!input.equals("6"))
+						if (!input.equals("8"))
 						{
 							Print.printInvalidInput();
 						}
@@ -450,7 +456,7 @@ public class Controller
 					review = sc.nextLine();
 				}
 
-				gameLibrary.addReview(id, new Review(rating,review));
+				gameLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating ,review));
 			}
 		}
 		else
@@ -545,7 +551,7 @@ public class Controller
 					review = sc.nextLine();
 				}
 
-				albumLibrary.addReview(id, new Review(rating,review));
+				albumLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating,review));
 			}
 		}
 		else

@@ -1,10 +1,14 @@
 public class Review
 {
+	int customerId;
+	int daysRented;
 	private int rating;
 	private String review;
 
-	public Review(int rating, String review)
+	public Review(int customerId,int daysRented,int rating, String review)
 	{
+		this.customerId = customerId;
+		this.daysRented = daysRented;
 		this.rating = rating;
 		this.review = review;
 	}
@@ -16,6 +20,6 @@ public class Review
 
 	public String toString()
 	{
-		return "Rating: " + rating + "\n Review: " + review;
+		return "Customer id: " + customerId + "Days rented: " + daysRented + " Rating: " + rating + " Review: " + review;
 	}
 }
