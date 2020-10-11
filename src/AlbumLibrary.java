@@ -124,7 +124,7 @@ public class AlbumLibrary
 		{
 			for(Review review : album.getReviews())
 			{
-				review.toString();
+				System.out.println(review.toString());
 			}
 		}
 	}

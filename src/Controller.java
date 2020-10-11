@@ -94,10 +94,14 @@ public class Controller
 						employeeLibrary.printBonus(id);
 						break;
 					case "6":
+						System.out.println("-------------Game rent history------------");
 						gameLibrary.printGamesHistory();
+						System.out.println("------------------------------------------");
 						break;
 					case "7":
+						System.out.println("-------------Game rent history------------");
 						albumLibrary.printAlbumsHistory();
+						System.out.println("------------------------------------------");
 						break;
 					default:
 						if (!input.equals("8"))
@@ -433,11 +437,15 @@ public class Controller
 
 			System.out.println("Would you like to leave a rating? (y/n)");
 			String input = sc.nextLine();
+			int rating = 0;
+			String review = "";
+			boolean isValidRating = false;
 
 			if(input.equals("y"))
 			{
+				isValidRating = true;
 				System.out.println("Print a review from 0 to 5: ");
-				int rating = sc.nextInt(); sc.nextLine();
+				rating = sc.nextInt(); sc.nextLine();
 
 				while(rating < 0 || rating > 5)
 				{
@@ -448,16 +456,14 @@ public class Controller
 				System.out.println("Would you like to leave a written review? (y/n)");
 				input = sc.nextLine();
 
-				String review = "";
-
 				if(input.equals("y"))
 				{
 					System.out.println("Write your review: ");
 					review = sc.nextLine();
 				}
-
-				gameLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating ,review));
 			}
+
+			gameLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating ,review, isValidRating));
 		}
 		else
 		{
@@ -528,11 +534,15 @@ public class Controller
 
 			System.out.println("Would you like to leave a rating? (y/n)");
 			String input = sc.nextLine();
+			int rating = 0;
+			String review = "";
+			boolean isValidRating = false;
 
 			if(input.equals("y"))
 			{
+				isValidRating = true;
 				System.out.println("Print a review from 0 to 5: ");
-				int rating = sc.nextInt(); sc.nextLine();
+				rating = sc.nextInt(); sc.nextLine();
 
 				while(rating < 0 || rating > 5)
 				{
@@ -543,16 +553,14 @@ public class Controller
 				System.out.println("Would you like to leave a written review? (y/n)");
 				input = sc.nextLine();
 
-				String review = "";
-
 				if(input.equals("y"))
 				{
 					System.out.println("Write your review: ");
 					review = sc.nextLine();
 				}
-
-				albumLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating,review));
 			}
+
+			albumLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating,review, isValidRating));
 		}
 		else
 		{

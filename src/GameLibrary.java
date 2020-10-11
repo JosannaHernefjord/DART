@@ -129,7 +129,7 @@ public class GameLibrary
 		{
 			for(Review review : game.getReviews())
 			{
-				review.toString();
+				System.out.println(review.toString());
 			}
 		}
 	}

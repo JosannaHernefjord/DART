@@ -64,7 +64,8 @@ public class Album implements Comparable<Album>
 
 			for(Review review : reviews)
 			{
-				accumulatedRatings += review.getRating();
+				if(review.isRatingValid())
+					accumulatedRatings += review.getRating();
 			}
 			return (double) accumulatedRatings / (double) reviews.size();
 		}
