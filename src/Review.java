@@ -1,7 +1,7 @@
 public class Review
 {
-	int customerId;
-	int daysRented;
+	private int customerId;
+	private int daysRented;
 	private int rating;
 	private String review;
 	private boolean ratingValid;
@@ -18,6 +18,11 @@ public class Review
 	public int getRating()
 	{
 		return rating;
+	}
+
+	public int getDaysRented()
+	{
+		return daysRented;
 	}
 
 	public boolean isRatingValid()

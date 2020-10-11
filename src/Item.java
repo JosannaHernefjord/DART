@@ -3,6 +3,7 @@ import java.util.ArrayList;
 public abstract class Item
 {
 	private int id;
+	private double totalRentProfit;
 	private String title;
 	private double dailyRent;
 	protected boolean isAvailable;
@@ -52,6 +53,7 @@ public abstract class Item
 	public void addReview(Review review)
 	{
 		reviews.add(review);
+		totalRentProfit = totalRentProfit + review.getDaysRented() * dailyRent;
 	}
 
 	public double getAverageRating()

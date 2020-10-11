@@ -105,7 +105,7 @@ public class Controller
 						break;
 
 					case "7":
-						System.out.println("-------------Game rent history------------");
+						System.out.println("-------------Album rent history------------");
 						albumLibrary.printAlbumsHistory();
 						System.out.println("------------------------------------------");
 						break;
@@ -256,7 +256,7 @@ public class Controller
 						break;
 
 					case "9":
-						System.out.println("-------All games by rating-------");
+						System.out.println("-------All album by rating-------");
 						albumLibrary.printAllAlbums();
 						System.out.println("---------------------------------");
 						break;
@@ -403,6 +403,9 @@ public class Controller
 
 	public void rentGame(Customer activeCustomer)
 	{
+		System.out.println("-----------------GAMES------------------");
+		gameLibrary.printAllGames();
+		System.out.println("----------------------------------------");
 		System.out.println("Write the ID of the game you want to rent: ");
 		int id = sc.nextInt();
 		sc.nextLine();
