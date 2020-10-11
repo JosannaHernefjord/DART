@@ -477,7 +477,7 @@ public class Controller
 	{
 		System.out.println("-----------------ALBUMS-----------------");
 		albumLibrary.printAllAlbums();
-		System.out.println("---------------------------------------------");
+		System.out.println("----------------------------------------");
 
 		System.out.println("Which album would you like to rent? ID: ");
 		int id = sc.nextInt();

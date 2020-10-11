@@ -90,7 +90,7 @@ public class Album implements Comparable<Album>
 		String status = "unavailable";
 		if (isAvailable)
 			status = "available";
-		return "ID:" + id + title + " - " + artist + ". Released in " + releaseYear + ". Price: " + rentPerDay + "SEK. Average rating: " + getAverageRating() + "Status: " + status;
+		return "ID: " + id + "  " + title + " - " + artist + ". Released in " + releaseYear + ". Price: " + rentPerDay + "SEK. Average rating: " + getAverageRating() + "Status: " + status;
 	}
 
 	public double getDailyRent()
