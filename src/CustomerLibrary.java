@@ -65,14 +65,6 @@ public class CustomerLibrary
 		return result;
 	}
 
-	public void printConsole()
-	{
-		for (Customer customer : customerList)                //For each  "customer" in customerList
-		{
-			System.out.println(customer.toString());        //Print the customer info
-		}
-	}
-
 	public boolean contains(int id)
 	{
 		for (Customer customer : customerList)
