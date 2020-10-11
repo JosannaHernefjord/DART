@@ -35,9 +35,14 @@ public abstract class Item
 		return dailyRent;
 	}
 
-	protected boolean getIsAvailable()
+	public boolean getIsAvailable()
 	{
 		return isAvailable;
+	}
+
+	public double getTotalRentProfit()
+	{
+		return totalRentProfit;
 	}
 
 	public void rentOut()
@@ -68,7 +73,8 @@ public abstract class Item
 
 			for(Review review : reviews)
 			{
-				accumulatedRatings += review.getRating();
+				if(review.isRatingValid())
+					accumulatedRatings += review.getRating();
 			}
 			return (double) accumulatedRatings / (double) reviews.size();
 		}

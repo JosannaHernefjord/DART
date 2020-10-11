@@ -4,7 +4,7 @@ import java.util.List;
 
 public class AlbumLibrary
 {
-	private List<Album> albumList;
+	private ArrayList<Album> albumList;
 
 	//-----Constructor----
 	public AlbumLibrary()
@@ -142,6 +142,21 @@ public class AlbumLibrary
 				System.out.println(review.toString());
 			}
 		}
+	}
+
+	public void printMostProfitable()
+	{
+		albumList.trimToSize();
+		Album mostProfitableAlbum = albumList.get(0);
+
+		for(Album album : albumList)
+		{
+			if(mostProfitableAlbum.getTotalRentProfit() < album.getTotalRentProfit())
+			{
+				mostProfitableAlbum = album;
+			}
+		}
+		System.out.println(mostProfitableAlbum.toString());
 	}
 
 }

@@ -4,7 +4,7 @@ import java.util.List;
 
 public class GameLibrary
 {
-	private List<Game> gameList;   //Instance variable
+	private ArrayList<Game> gameList;   //Instance variable
 
 
 	//--------------CONSTRUCTOR---------
@@ -149,6 +149,21 @@ public class GameLibrary
 				System.out.println(review.toString());
 			}
 		}
+	}
+
+	public void printMostProfitable()
+	{
+		gameList.trimToSize();
+		Game mostProfitableGame = gameList.get(0);
+
+		for(Game game : gameList)
+		{
+			if(mostProfitableGame.getTotalRentProfit() < game.getTotalRentProfit())
+			{
+				mostProfitableGame = game;
+			}
+		}
+		System.out.println(mostProfitableGame.toString());
 	}
 }
 

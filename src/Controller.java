@@ -60,7 +60,7 @@ public class Controller
 
 		if (input.equals("admin1234"))
 		{
-			while (!input.equals("8"))
+			while (!input.equals("9"))
 			{
 				Print.printManagerScreen();
 				input = sc.nextLine();
@@ -107,7 +107,19 @@ public class Controller
 					case "7":
 						System.out.println("-------------Album rent history------------");
 						albumLibrary.printAlbumsHistory();
+						System.out.println("-------------------------------------------");
+						break;
+
+					case "8":
+						System.out.println("--------Print most profitable game--------");
+						gameLibrary.printMostProfitable();
 						System.out.println("------------------------------------------");
+						break;
+
+					case "9":
+						System.out.println("--------Print most profitable Album--------");
+						albumLibrary.printMostProfitable();
+						System.out.println("-------------------------------------------");
 						break;
 
 					default:
@@ -262,7 +274,9 @@ public class Controller
 						break;
 
 					case"10":
+						System.out.println("---------------------------------");
 						searchItem(activeCustomer);
+						System.out.println("---------------------------------");
 						break;
 
 					default:
@@ -296,28 +310,24 @@ public class Controller
 
 	public void addNewEmployee()
 	{
-		int id, birthYear;
-		double grossSalary;
-		String name, address;
-
 		Print.printCreateEmployee();
 
 		System.out.print("ID: ");
-		id = sc.nextInt();
+		int id = sc.nextInt();
 		sc.nextLine();            //Read next line to clear scanner buffer.
 
 		System.out.print("Name: ");
-		name = sc.nextLine();
+		String name = sc.nextLine();
 
 		System.out.print("Birth year: ");
-		birthYear = sc.nextInt();
+		int birthYear = sc.nextInt();
 		sc.nextLine();            //Read next line to clear scanner buffer.
 
 		System.out.print("Address: ");
-		address = sc.nextLine();
+		String address = sc.nextLine();
 
 		System.out.print("Monthly gross salary: ");
-		grossSalary = sc.nextDouble();
+		double grossSalary = sc.nextDouble();
 		sc.nextLine();            //Read next line to clear scanner buffer.
 
 		employeeLibrary.addEmployee(id, name, birthYear, address, grossSalary);
@@ -325,45 +335,37 @@ public class Controller
 
 	public void addCustomer()
 	{
-		int id;
-		String name;
-		String password;
-
 		Print.printCreateCustomer();
 
 		System.out.print("ID: ");
-		id = sc.nextInt();
+		int id = sc.nextInt();
 		sc.nextLine();
 
 		System.out.print("Name: ");
-		name = sc.nextLine();
+		String name = sc.nextLine();
 
 		System.out.print("Password: ");
-		password = sc.nextLine();
+		String password = sc.nextLine();
 
 		customerLibrary.addCustomer(id, name, password);
 	}
 
 	public void addNewGame()
 	{
-		int id;
-		String name, genre;
-		double dailyRent;
-
 		Print.printCreateGame();
 
 		System.out.print("ID: ");
-		id = sc.nextInt();
+		int id = sc.nextInt();
 		sc.nextLine();
 
 		System.out.print("Name: ");
-		name = sc.nextLine();
+		String name = sc.nextLine();
 
 		System.out.print("Genre: ");
-		genre = sc.nextLine();
+		String genre = sc.nextLine();
 
 		System.out.print("Daily rent: ");
-		dailyRent = sc.nextDouble();
+		double dailyRent = sc.nextDouble();
 		sc.nextLine();
 
 		gameLibrary.addGame(id, name, genre, dailyRent);
@@ -371,30 +373,24 @@ public class Controller
 
 	public void addNewSongAlbum()
 	{
-		int id;
-		String title;
-		String artist;
-		int releaseYear;
-		double rentPerDay;
-
 		Print.printCreateSongAlbum();
 
 		System.out.print("ID: ");
-		id = sc.nextInt();
+		int id = sc.nextInt();
 		sc.nextLine();
 
 		System.out.print("Title: ");
-		title = sc.nextLine();
+		String title = sc.nextLine();
 
 		System.out.print("Artist: ");
-		artist = sc.nextLine();
+		String artist = sc.nextLine();
 
 		System.out.print("Released in year: ");
-		releaseYear = sc.nextInt();
+		int releaseYear = sc.nextInt();
 		sc.nextLine();
 
 		System.out.print("Daily rent: ");
-		rentPerDay = sc.nextDouble();
+		double rentPerDay = sc.nextDouble();
 		sc.nextLine();
 
 		albumLibrary.addAlbum(id, title, artist, releaseYear, rentPerDay);
@@ -471,7 +467,7 @@ public class Controller
 			if (input.equals("y"))
 			{
 				isValidRating = true;
-				System.out.println("Print a review from 0 to 5: ");
+				System.out.println("Enter a rate from 0 to 5: ");
 				rating = sc.nextInt();
 				sc.nextLine();
 

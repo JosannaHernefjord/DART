@@ -10,15 +10,20 @@ public class CustomerLibrary
 	//--------------CONSTRUCTOR---------
 	public CustomerLibrary()
 	{
-		customerList = new ArrayList<>();    //Make a new empty list and assign to customerList
+		this.customerList = new ArrayList<>();    //Make a new empty list and assign to customerList
 	}
 
 
 	//--------------METHODS------------
 	public void addCustomer(int id, String name, String password)
 	{
-		Customer c = new Customer(id, name, password);
-		customerList.add(c);
+		if(!contains(id))
+		{
+			Customer c = new Customer(id, name, password);
+			customerList.add(c);
+		}
+		else
+			System.out.println("Customer with ID: " + id + " already exist.");
 	}
 
 	public void removeCustomer(int idToRemove)
