@@ -44,7 +44,7 @@ public class AlbumLibrary
 		{
 			if (id == album.getId())
 			{
-				album.rentOutSongAlbum();
+				album.rentOut();
 				break;
 			}
 		}
@@ -91,7 +91,7 @@ public class AlbumLibrary
 		{
 			if (id == album.getId())
 			{
-				album.returnSongAlbum();
+				album.returnItem();
 				break;
 			}
 		}
