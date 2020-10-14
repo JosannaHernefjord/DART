@@ -492,8 +492,9 @@ public class Controller
 			gameLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating, review, isValidRating));
 		}
 		else if (daysRented <= 0)
+		{
 			System.out.println("Days invalid");
-
+		}
 		else
 		{
 			if (gameLibrary.contains(id))
