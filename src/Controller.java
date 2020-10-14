@@ -1,3 +1,4 @@
+import javax.swing.*;
 import java.util.Scanner;
 
 public class Controller
@@ -441,7 +442,7 @@ public class Controller
 		int daysRented = sc.nextInt();
 		sc.nextLine();
 
-		if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id))
+		if (gameLibrary.contains(id) && !gameLibrary.checkAvailability(id) && daysRented > 0)
 		{
 			gameLibrary.returnGame(id);
 			activeCustomer.returnedOneItem();
@@ -490,6 +491,9 @@ public class Controller
 
 			gameLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating, review, isValidRating));
 		}
+		else if (daysRented <= 0)
+			System.out.println("Days invalid");
+
 		else
 		{
 			if (gameLibrary.contains(id))
