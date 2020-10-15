@@ -1,6 +1,5 @@
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.List;
 
 public class GameLibrary
 {
@@ -74,7 +73,7 @@ public class GameLibrary
 		{
 			if (id == game.getId())
 			{
-				game.returnGame();
+				game.returnItem();
 				break;
 			}
 		}

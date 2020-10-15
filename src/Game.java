@@ -1,25 +1,17 @@
-import java.util.ArrayList;
 
 public class Game extends Item implements Comparable<Game>
 {
 	//---------INSTANCE VARIABLES-----------
 	private String genre;
-	private boolean isAvailable;
 
 	//Constructor
 	public Game(int id, String title, String genre, double dailyRent)
 	{
 		super(id, title, dailyRent);
 		this.genre = genre;
-		this.isAvailable = true;
 	}
 
 	//---------METHODS-----------
-
-	public void returnGame()
-	{
-		this.isAvailable = true;
-	}
 
 	public String getGenre()
 	{

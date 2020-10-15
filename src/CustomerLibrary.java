@@ -4,7 +4,7 @@ import java.util.List;
 public class CustomerLibrary
 {
 	//-----INSTANCE VARIABLES----
-	private List<Customer> customerList;
+	private ArrayList<Customer> customerList;
 
 
 	//--------------CONSTRUCTOR---------
@@ -68,6 +68,21 @@ public class CustomerLibrary
 		}
 
 		return result;
+	}
+
+	public void printMostProfitable()
+	{
+		customerList.trimToSize();
+		Customer mostProfitableCustomer = customerList.get(0);
+
+		for(Customer customer : customerList)
+		{
+			if(mostProfitableCustomer.getTotalRentProfit() < customer.getTotalRentProfit())
+			{
+				mostProfitableCustomer = customer;
+			}
+		}
+		System.out.println(mostProfitableCustomer.toString());
 	}
 
 	public boolean contains(int id)

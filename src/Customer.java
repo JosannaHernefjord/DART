@@ -10,6 +10,7 @@ public class Customer
 	private String password;
 	private int credits;
 	private int numberObjectsRented;
+	private double totalRentProfit;
 	private boolean hasRequestedMembership;
 	public final String notMember = "Not a member";
 	public final String silver = "Silver";
@@ -60,6 +61,16 @@ public class Customer
 	public int getNumberObjectsRented()
 	{
 		return numberObjectsRented;
+	}
+
+	public double getTotalRentProfit()
+	{
+		return totalRentProfit;
+	}
+
+	public void addRentProfit(double cost)
+	{
+		totalRentProfit = totalRentProfit + cost;
 	}
 
 	public void rentedOneItem()
@@ -170,7 +181,7 @@ public class Customer
 
 	public String toString()
 	{
-		return "ID: " + id + " - Name: " + name + " - Membership: " + membership;
+		return "ID: " + id + " - Name: " + name + " - Membership: " + membership + " - Total rent profit: " + totalRentProfit;
 	}
 
 }

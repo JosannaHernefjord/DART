@@ -1,4 +1,3 @@
-import javax.swing.*;
 import java.util.Scanner;
 
 public class Controller
@@ -61,7 +60,7 @@ public class Controller
 
 		if (input.equals("admin1234"))
 		{
-			while (!input.equals("9"))
+			while (!input.equals("11"))
 			{
 				Print.printManagerScreen();
 				input = sc.nextLine();
@@ -123,8 +122,14 @@ public class Controller
 						System.out.println("-------------------------------------------");
 						break;
 
+					case"10":
+						System.out.println("-------Print most profitable Customer------");
+						customerLibrary.printMostProfitable();
+						System.out.println("-------------------------------------------");
+						break;
+
 					default:
-						if (!input.equals("8"))
+						if (!input.equals("11"))
 						{
 							Print.printInvalidInput();
 						}
@@ -276,7 +281,7 @@ public class Controller
 
 					case"10":
 						System.out.println("---------------------------------");
-						searchItem(activeCustomer);
+						searchItem();
 						System.out.println("---------------------------------");
 						break;
 
@@ -456,6 +461,7 @@ public class Controller
 				activeCustomer.increaseCredits();
 				double cost = daysRented * gameLibrary.getDailyRent(id) * activeCustomer.discount();
 				rentProfit = rentProfit + cost;
+				activeCustomer.addRentProfit(cost);
 				System.out.println("Game returned! You paid: " + cost + " kr.");
 			}
 
@@ -560,6 +566,7 @@ public class Controller
 				activeCustomer.increaseCredits();
 				double cost = daysRented * albumLibrary.getDailyRent(id) * activeCustomer.discount();
 				rentProfit = rentProfit + cost;
+				activeCustomer.addRentProfit(cost);
 				System.out.println("Song album returned! You paid: " + cost + " kr.");
 			}
 
@@ -622,7 +629,7 @@ public class Controller
 		}
 	}
 
-	public void searchItem(Customer activeCustomer)
+	public void searchItem()
 	{
 		System.out.println("What item do you wish to search for? Type one of the options below: \n1) Games \n2) Song albums");
 		String input = sc.nextLine();

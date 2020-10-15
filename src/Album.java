@@ -1,4 +1,3 @@
-import java.util.ArrayList;
 
 public class Album extends Item implements Comparable<Album>
 {
@@ -40,6 +39,7 @@ public class Album extends Item implements Comparable<Album>
 			status = "available";
 		return "ID: " + getId() + "  " + getTitle() + " - " + artist + ". Released in " + releaseYear + ". Price: " + getDailyRent() + "SEK. Average rating: " + getAverageRating() + "Status: " + status;
 	}
+
 }
 
 
