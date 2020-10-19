@@ -123,6 +123,17 @@ public class AlbumLibrary
 		}
 	}
 
+	public void printRentFrequency()
+	{
+		for (Album aLbum : albumList)
+		{
+			if(aLbum.getReviews().size() > 0)
+			{
+				System.out.println("ID: " + aLbum.getId() + "  " + aLbum.getTitle() + "  Times rented: " + aLbum.getReviews().size());
+			}
+		}
+	}
+
 	public void printByYear(int year)
 	{
 		for (Album album : albumList) {

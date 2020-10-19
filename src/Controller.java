@@ -60,7 +60,7 @@ public class Controller
 
 		if (input.equals("admin1234"))
 		{
-			while (!input.equals("11"))
+			while (!input.equals("12"))
 			{
 				Print.printManagerScreen();
 				input = sc.nextLine();
@@ -128,8 +128,15 @@ public class Controller
 						System.out.println("-------------------------------------------");
 						break;
 
+					case"11":
+						System.out.println("-----Print rent frequency of games and album -----");
+						gameLibrary.printRentFrequency();
+						albumLibrary.printRentFrequency();
+						System.out.println("--------------------------------------------------");
+						break;
+
 					default:
-						if (!input.equals("11"))
+						if (!input.equals("12"))
 						{
 							Print.printInvalidInput();
 						}

@@ -151,6 +151,17 @@ public class GameLibrary
 		}
 	}
 
+	public void printRentFrequency()
+	{
+		for (Game game : gameList)
+		{
+			if(game.getReviews().size() > 0)
+			{
+				System.out.println("ID: " + game.getId() + "  " + game.getTitle() + "  Times rented: " + game.getReviews().size());
+			}
+		}
+	}
+
 	public void printMostProfitable()
 	{
 		gameList.trimToSize();
@@ -165,5 +176,6 @@ public class GameLibrary
 		}
 		System.out.println(mostProfitableGame.toString());
 	}
+
 }
 
