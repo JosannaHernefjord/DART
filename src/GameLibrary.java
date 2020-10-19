@@ -45,6 +45,7 @@ public class GameLibrary
 			{
 				gameList.remove(game);
 				foundGame = true;
+				System.out.println("Game removed!");
 				break;
 			}
 		}

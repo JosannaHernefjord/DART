@@ -32,6 +32,7 @@ public class AlbumLibrary
 			{
 				albumList.remove(album);
 				foundAlbum = true;
+				System.out.println("Album removed!");
 				break;
 			}
 		}

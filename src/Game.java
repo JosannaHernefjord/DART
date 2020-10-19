@@ -32,10 +32,10 @@ public class Game extends Item implements Comparable<Game>
 
 	public String toString()
 	{
-		String temp = "unavailable";
+		String temp = "Can be returned";
 
 		if (isAvailable)
-			temp = "available";
+			temp = "Not rented";
 
 		return getId() + ": " + getTitle() + " (" + genre + "). " + getDailyRent() + "Average rating: " + getAverageRating() + ". Status: " + temp;
 	}

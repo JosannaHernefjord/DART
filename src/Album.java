@@ -34,9 +34,9 @@ public class Album extends Item implements Comparable<Album>
 	public String toString()
 	{
 		// if the album is available or not
-		String status = "unavailable";
+		String status = "Can be returned";
 		if (isAvailable)
-			status = "available";
+			status = "Not rented";
 		return "ID: " + getId() + "  " + getTitle() + " - " + artist + ". Released in " + releaseYear + ". Price: " + getDailyRent() + "SEK. Average rating: " + getAverageRating() + "Status: " + status;
 	}
 

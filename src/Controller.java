@@ -436,6 +436,9 @@ public class Controller
 
 	public void returnGame(Customer activeCustomer)
 	{
+		System.out.println("-----------------GAMES------------------");
+		gameLibrary.printAllGames();
+		System.out.println("----------------------------------------");
 
 		System.out.println("Enter the following information: ");
 
@@ -544,6 +547,10 @@ public class Controller
 
 	public void returnAlbum(Customer activeCustomer)
 	{
+		System.out.println("-----------------ALBUM------------------");
+		albumLibrary.printAllAlbums();
+		System.out.println("----------------------------------------");
+
 		System.out.println("Which album would you like to return? ID: ");
 		int id = sc.nextInt();
 		sc.nextLine();
