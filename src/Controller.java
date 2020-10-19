@@ -475,37 +475,8 @@ public class Controller
 				System.out.println("Game returned! You paid: " + cost + " kr.");
 			}
 
-			System.out.println("Would you like to leave a rating? (y/n)");
-			String input = sc.nextLine();
-			int rating = 0;
-			String review = "";
-			boolean isValidRating = false;
-
-			if (input.equals("y"))
-			{
-				isValidRating = true;
-				System.out.println("Enter a rate from 0 to 5: ");
-				rating = sc.nextInt();
-				sc.nextLine();
-
-				while (rating < 0 || rating > 5)
-				{
-					System.out.println("Invalid input, try again (0-5). ");
-					rating = sc.nextInt();
-					sc.nextLine();
-				}
-
-				System.out.println("Would you like to leave a written review? (y/n)");
-				input = sc.nextLine();
-
-				if (input.equals("y"))
-				{
-					System.out.println("Write your review: ");
-					review = sc.nextLine();
-				}
-			}
-
-			gameLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating, review, isValidRating));
+			Review review = leaveReview(activeCustomer, daysRented);
+			albumLibrary.addReview(id,review);
 		}
 		else if (daysRented <= 0)
 		{
@@ -584,37 +555,8 @@ public class Controller
 				System.out.println("Song album returned! You paid: " + cost + " kr.");
 			}
 
-			System.out.println("Would you like to leave a rating? (y/n)");
-			String input = sc.nextLine();
-			int rating = 0;
-			String review = "";
-			boolean isValidRating = false;
-
-			if (input.equals("y"))
-			{
-				isValidRating = true;
-				System.out.println("Print a review from 0 to 5: ");
-				rating = sc.nextInt();
-				sc.nextLine();
-
-				while (rating < 0 || rating > 5)
-				{
-					System.out.println("Invalid input, try again (0-5). ");
-					rating = sc.nextInt();
-					sc.nextLine();
-				}
-
-				System.out.println("Would you like to leave a written review? (y/n)");
-				input = sc.nextLine();
-
-				if (input.equals("y"))
-				{
-					System.out.println("Write your review: ");
-					review = sc.nextLine();
-				}
-			}
-
-			albumLibrary.addReview(id, new Review(activeCustomer.getId(), daysRented, rating, review, isValidRating));
+			Review review = leaveReview(activeCustomer, daysRented);
+			albumLibrary.addReview(id,review);
 		}
 		else
 		{
@@ -623,6 +565,41 @@ public class Controller
 			else
 				System.out.println("Album with ID: " + id + " does not exist.");
 		}
+	}
+
+	private Review leaveReview(Customer activeCustomer, int daysRented)
+	{
+		System.out.println("Would you like to leave a rating? (y/n)");
+		String input = sc.nextLine();
+		int rating = 0;
+		String review = "";
+		boolean isValidRating = false;
+
+		if (input.equals("y"))
+		{
+			isValidRating = true;
+			System.out.println("Print a review from 0 to 5: ");
+			rating = sc.nextInt();
+			sc.nextLine();
+
+			while (rating < 0 || rating > 5)
+			{
+				System.out.println("Invalid input, try again (0-5). ");
+				rating = sc.nextInt();
+				sc.nextLine();
+			}
+
+			System.out.println("Would you like to leave a written review? (y/n)");
+			input = sc.nextLine();
+
+			if (input.equals("y"))
+			{
+				System.out.println("Write your review: ");
+				review = sc.nextLine();
+			}
+		}
+
+		return new Review(activeCustomer.getId(), daysRented, rating, review, isValidRating);
 	}
 
 	private void sendMessage(int senderId)
